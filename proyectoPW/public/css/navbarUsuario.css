@@ -1,0 +1,46 @@
+/* Aumentar el espaciado entre las opciones de navegación */
+.navbar-nav .nav-item {
+    margin-right: 40px; /* Ajusta el valor para más o menos espacio */
+}
+
+/* Estilo de los íconos y el texto en la barra de navegación */
+.navbar-nav .nav-link {
+    color: black;
+    font-weight: normal;
+    text-align: center;
+}
+
+.navbar-nav .nav-link.active {
+    background-color: #62b5a7;
+    color: white !important;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.navbar-nav .nav-link i {
+    font-size: 1.2rem;
+}
+
+.navbar-nav .nav-link span {
+    font-size: 0.9rem;
+}
+
+/* Estilo del icono de carrito de compras */
+.navbar .fa-shopping-cart {
+    font-size: 1.5rem;
+    color: black;
+}
+
+/* Título central */
+.title-container {
+    background-color: #62b5a7;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.title-text {
+    color: white;
+    font-weight: bold;
+    font-size: 2.8rem;
+    margin: 0;
+}

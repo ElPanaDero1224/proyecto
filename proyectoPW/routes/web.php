@@ -21,7 +21,7 @@ Route::view('/vuelosDetalles','detallesVuelo')->name('rutadetallesVuelo');
 
 Route::view('/hoteles','busquedaHoteles')->name('rutabusquedaHoteles');
 Route::view('/hotelesDetalles','detallesHoteles')->name('rutadetallesHoteles');
-Route::view('/politicas','politicasCancelacion')->name('rutaPloticas');
+//Route::view('/politicas','politicasCancelacion')->name('rutaPloticas');
 
 Route::view('/reservas','reservas')->name('rutareservas');
 

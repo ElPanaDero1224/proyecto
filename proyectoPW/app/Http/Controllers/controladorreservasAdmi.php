@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class controladorreservasAdmi extends Controller
 {
-    public function controladorreservasAdmi(){
+    public function reservasAdmi(){
     return view('reservasAdmi');
     }
 

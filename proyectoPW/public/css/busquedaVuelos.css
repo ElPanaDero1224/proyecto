@@ -1,0 +1,12 @@
+/* Ajustes de colores específicos */
+.text-primary {
+    color: #62b5a7 !important;
+}
+
+.bg-primary {
+    background-color: #62b5a7 !important;
+}
+
+.fw-bold {
+    font-weight: bold !important;
+}

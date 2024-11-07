@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\controladorreservasAdmi;
 use App\Http\Controllers\controladornotificacionesProgramados;
 use App\Http\Controllers\controladorrestablecerContraseña;
+use App\Http\Controllers\controladornotificacionesPlantillas;
+
 
 // Route::get('/prueba', function () {
 //     return view('welcome');
@@ -12,6 +14,12 @@ use App\Http\Controllers\controladorrestablecerContraseña;
 Route::get('/reservasAdmi',[controladorreservasAdmi::class, 'reservasAdmi'])->name('rutareservasAdmi');
 Route::get('/restablecer',[controladorrestablecerContraseña::class, 'restablecerContraseña'])->name('rutarestablecerpass');
 Route::get('/notificaciones/programados',[controladornotificacionesProgramados::class, 'notificacionesProgramados'])->name('rutaprogramadas');
+Route::get('/notificaciones/plantillas',[controladornotificacionesPlantillas::class, 'notificacionesPlantillas'])->name('rutaplantillas');
 
-Route::post('/reservasAdmiexportar', [controladorreservasAdmi::class, 'controladorreservasAdmialert']);
+Route::post('/reservasAdmiexportar', [controladorreservasAdmi::class, 'reservasAdmialert']);
 Route::post('/formrestablecerContraseña', [controladorrestablecerContraseña::class, 'Alert']);
+Route::post('/confirmacionregistro', [controladornotificacionesPlantillas::class, 'confirmacionregistro']);
+Route::post('/hotel', [controladornotificacionesPlantillas::class, 'hotel']);
+Route::post('/vuelo', [controladornotificacionesPlantillas::class, 'vuelo']);
+Route::post('/cancelacion', [controladornotificacionesPlantillas::class, 'cancelacion']);
+Route::post('/retraso', [controladornotificacionesPlantillas::class, 'retraso']);

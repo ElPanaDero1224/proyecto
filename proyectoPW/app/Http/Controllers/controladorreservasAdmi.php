@@ -10,7 +10,7 @@ class controladorreservasAdmi extends Controller
     return view('reservasAdmi');
     }
 
-    public function controladorreservasAdmialert(Request $peticion){ 
+    public function reservasAdmialert(Request $peticion){ 
 
         $tipoexportar=$peticion->input('tipoexportar');
        session()->flash('exito', 'Se ha exportado correctamente el archivo en formato '.$tipoexportar);

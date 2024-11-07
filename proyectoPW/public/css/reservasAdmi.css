@@ -1,0 +1,52 @@
+.chart-container {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.chart-text {
+    margin-top: 80px;
+    font-size: 18px;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.legend-color.reserved {
+    background-color: #00bfff;
+}
+
+.legend-color.scheduled {
+    background-color: #ffa500;
+}
+
+.legend-color.canceled {
+    background-color: #ffcc00;
+}
+
+.table thead th {
+    background-color: #87c3b3;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.card h5 {
+    font-weight: bold;
+}
+
+.text-success {
+    font-size: 24px;
+}

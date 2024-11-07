@@ -20,7 +20,7 @@ Route::view('/vuelosDestino','vuelosDestino')->name('rutavuelosDestino');
 Route::view('/vuelosDetalles','detallesVuelo')->name('rutadetallesVuelo');
 
 Route::view('/hoteles','busquedaHoteles')->name('rutabusquedaHoteles');
-Route::view('/hotelesDetalles','detallesHoteles')->name('rutadetallesHoteles');
+/*Route::view('/hotelesDetalles','detallesHoteles')->name('rutadetallesHoteles');*/
 Route::view('/politicas','politicasCancelacion')->name('rutaPloticas');
 
 Route::view('/reservas','reservas')->name('rutareservas');
@@ -34,7 +34,7 @@ Route::view('/vuelosAdmiAdministrar','administrarVuelos')->name('rutaadministrar
 Route::view('/vuelosAdmiNew','registroNewVuelo')->name('rutaregistroNewVuelo');
 
 Route::view('/hotelesAdmi','busquedaHotelesAdmi')->name('rutabusquedaHotelesAdmi');
-Route::view('/hotelesAdmiEdit','editarinfoHotel')->name('rutaeditarHotel');
+//Route::view('/hotelesAdmiEdit','editarinfoHotel')->name('rutaeditarHotel');
 Route::view('/politicasAdmi','modificarPoliticas')->name('rutamodificarPoliticas');
 Route::view('/hotelesAdmiformulario','formularioNewHotel')->name('rutarformularioHotel');
 

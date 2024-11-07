@@ -37,7 +37,7 @@
                     <div class="icon-container">
                         <img src="{{asset('img/calendar.png')}}" alt="Icono Reservas">
                     </div>
-                    <a href="{{route('rutareservas')}}" class="btn btn-secondary mt-3">Gestionar reservas</a>
+                    <a href="{{route('reservas.index')}}" class="btn btn-secondary mt-3">Gestionar reservas</a>
                 </div>
             </div>
         </div>

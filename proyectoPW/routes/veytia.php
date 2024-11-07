@@ -14,3 +14,4 @@ Route::get('/restablecer',[controladorrestablecerContraseña::class, 'restablece
 Route::get('/notificaciones/programados',[controladornotificacionesProgramados::class, 'notificacionesProgramados'])->name('rutaprogramadas');
 
 Route::post('/reservasAdmiexportar', [controladorreservasAdmi::class, 'controladorreservasAdmialert']);
+Route::post('/formrestablecerContraseña', [controladorrestablecerContraseña::class, 'Alert']);

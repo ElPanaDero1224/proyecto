@@ -32,7 +32,7 @@ Route::view('/carrito','carrito')->name('rutacarrito');
 Route::view('/vuelosAdmi','busquedaVuelosAdmi')->name('rutabusquedaVuelosAdmi');
 Route::view('/vuelosAdmiAdministrar','administrarVuelos')->name('rutaadministrarVuelos');
 Route::view('/vuelosAdmiNew','registroNewVuelo')->name('rutaregistroNewVuelo');
-
+Route::view('/hotelesAdmi','busquedaHotelesAdmi')->name('rutabusquedaHotelesAdmi');
 //Route::view('/hotelesAdmi','busquedaHotelesAdmi')->name('rutabusquedaHotelesAdmi');
 //Route::view('/hotelesAdmiEdit','editarinfoHotel')->name('rutaeditarHotel');
 Route::view('/politicasAdmi','modificarPoliticas')->name('rutamodificarPoliticas');

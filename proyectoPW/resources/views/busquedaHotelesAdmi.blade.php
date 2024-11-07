@@ -13,7 +13,7 @@
     icon: "success"
     });
     </script>
-    @endsession
+@endsession
 
 
 <div class="container mt-4">

@@ -7,6 +7,7 @@
     @vite(['resources/js/app.js'])
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('css/navbarUsuario.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 <body>
 

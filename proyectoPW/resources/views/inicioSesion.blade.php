@@ -8,7 +8,7 @@
 </div>
 
 <div class="form-section">
-    <h2 class="form-title">Iniciar Sesión</h2>|
+    <h2 class="form-title">Iniciar Sesión</h2>
     <form method="POST" action="{{ route('rutainiciosesion') }}">
         @csrf
         <div class="mb-3">
@@ -27,6 +27,11 @@
         </div>
         <button type="submit" class="btn btn-custom">Iniciar Sesión</button>
     </form>
-    <p class="form-text mt-3">¿No tienes una cuenta? <a href="{{ route('rutaregistro') }}">Regístrate</a></p>
+    <p class="form-text mt-3">
+        ¿Has olvidado tu contraseña? <a href="{{ url('/recuperacion') }}">Haz clic aquí.</a>
+    </p>
+    <p class="form-text mt-3">
+        ¿No tienes una cuenta? <a href="{{ route('rutaregistro') }}">Regístrate</a>
+    </p>
 </div>
 @endsection

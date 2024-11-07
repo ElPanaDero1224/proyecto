@@ -17,7 +17,7 @@
                     <div class="icon-container">
                         <img src="{{asset('img/plane.png')}}" alt="Icono Vuelos">
                     </div>
-                    <a href="{{route('rutabusquedaVuelos')}}" class="btn btn-secondary mt-3">Gestionar vuelos</a>
+                    <a href="{{route('rutabusquedaVuelosAdmi')}}" class="btn btn-secondary mt-3">Gestionar vuelos</a>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
                     <div class="icon-container">
                         <img src="{{asset('img/hotel.png')}}" alt="Hoteles">
                     </div>
-                    <a href="{{route('rutabusquedaHoteles')}}" class="btn btn-secondary mt-3">Gestionar hoteles</a>
+                    <a href="{{route('rutabusquedaHotelesAdmi')}}" class="btn btn-secondary mt-3">Gestionar hoteles</a>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                     <div class="icon-container">
                         <img src="{{asset('img/calendar.png')}}" alt="Icono Reservas">
                     </div>
-                    <a href="{{route('reservas.index')}}" class="btn btn-secondary mt-3">Gestionar reservas</a>
+                    <a href="{{route('rutareservasAdmi')}}" class="btn btn-secondary mt-3">Gestionar reservas</a>
                 </div>
             </div>
         </div>

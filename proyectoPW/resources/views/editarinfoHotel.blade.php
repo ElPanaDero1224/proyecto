@@ -12,7 +12,7 @@
     @session('editarhotel')
     <script>
     Swal.fire({
-    title: "Good job!",
+    title: "Guardado",
     text: "{{$value}}",
     icon: "success"
     });

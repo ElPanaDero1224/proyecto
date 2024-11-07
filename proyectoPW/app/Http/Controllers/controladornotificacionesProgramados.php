@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class controladornotificacionesProgramados extends Controller
 {
-    public function controladornotificacionesProgramados()
+    public function notificacionesProgramados()
     {
     return view('notificacionesProgramados');
     }

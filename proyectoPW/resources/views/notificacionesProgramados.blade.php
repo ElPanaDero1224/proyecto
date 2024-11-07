@@ -3,7 +3,7 @@
 @section('seccion')
 
 
-    @vite(['resources/js/app.js', 'public\css\notificacionesProgramados.css'])
+    @vite(['public\css\notificacionesProgramados.css'])
 
 <body>
 

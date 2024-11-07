@@ -2,16 +2,10 @@
 @section('modulo', '| Gestionar Reservas')
 @section('seccion')
 
-<div class="container mt-4">
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/js/app.js', 'public\css\reservasAdmi.css']) 
-    <title>Reporte de Vuelos</title>
-</head>
+
 <body>
 
 <div class="container mt-4">

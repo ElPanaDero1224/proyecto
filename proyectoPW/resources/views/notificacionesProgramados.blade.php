@@ -2,15 +2,9 @@
 @section('modulo', '| Notificaciones programados')
 @section('seccion')
 
-<div class="container mt-4">
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     @vite(['resources/js/app.js', 'public\css\notificacionesProgramados.css'])
-    <title>Plantillas de Mensajes</title>
-</head>
+
 <body>
 
 <div class="container mt-4">
@@ -112,8 +106,6 @@
 </div>
 
 </body>
-</html>
 
-</div>
 
 @endsection

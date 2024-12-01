@@ -17,4 +17,6 @@ class ControladorbusquedaHotelesAdmi extends Controller
         return to_route('rutabusquedaHotelesAdmi');
 
     }
+
 }
+

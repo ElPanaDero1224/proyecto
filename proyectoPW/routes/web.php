@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\PoliticasController;
 use App\Http\Controllers\InicioSesionController;
 use App\Http\Controllers\ControladorPoliticasCancelacion;

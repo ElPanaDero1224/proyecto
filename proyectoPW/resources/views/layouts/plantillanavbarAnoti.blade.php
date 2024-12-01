@@ -16,19 +16,19 @@
         <!-- Opciones de navegación -->
         <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-                <a href="/vuelos" class="nav-link d-flex flex-column align-items-center {{ Request::is('vuelos') ? 'active' : '' }}">
+                <a href="/vuelosAmi" class="nav-link d-flex flex-column align-items-center {{ Request::is('vuelosAdmi*') ? 'active' : '' }}">
                     <i class="fas fa-plane"></i>
                     <span>Vuelos</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/hoteles" class="nav-link d-flex flex-column align-items-center {{ Request::is('hoteles') ? 'active' : '' }}">
+                <a href="/hotelesAdmi" class="nav-link d-flex flex-column align-items-center {{ Request::is('hotelesAdmi*') ? 'active' : '' }}">
                     <i class="fas fa-hotel"></i>
                     <span>Hoteles</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/reservas" class="nav-link d-flex flex-column align-items-center {{ Request::is('reservas') ? 'active' : '' }}">
+                <a href="/reservasAdmi" class="nav-link d-flex flex-column align-items-center {{ Request::is('reservasAdmi*') ? 'active' : '' }}">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Reservas</span>
                 </a>

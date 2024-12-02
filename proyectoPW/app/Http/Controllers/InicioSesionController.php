@@ -2,27 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InicioSesionRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class InicioSesionController extends Controller
 {
+    /**
+     * Muestra la vista de inicio de sesión.
+     */
     public function create()
     {
         return view('inicioSesion');
     }
 
-    public function store(Request $request)
+    /**
+     * Procesa el formulario de inicio de sesión con validaciones.
+     */
+    public function store(InicioSesionRequest $request)
     {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
-        }
-
-        return back()->withErrors([
-            'email' => 'Las credenciales proporcionadas no son válidas.',
-        ]);
+        // Si pasa las validaciones del InicioSesionRequest
+        return redirect()->route('rutabusquedaVuelos')->with('exito', 'Inicio de sesión exitoso.');
     }
 }

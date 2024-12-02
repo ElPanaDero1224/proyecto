@@ -1,110 +1,150 @@
-@extends('layouts.plantillanavbarA') 
+@extends('layouts.plantillanavbarA')
+
 @section('modulo', '| Nuevo vuelo')
+
+<!-- Estilos y scripts necesarios -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 @section('seccion')
 
 <div class="container mt-5">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title text-center mb-4">Modificar Vuelo</h4>
-            <form method="POST" action="{{ route('mdfcvls') }}">
+            <form method="POST" action="{{ route('vuelos.update', $vuelos->id) }}" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
+
                 <div class="form-row">
+                    <!-- Número de vuelo -->
                     <div class="form-group col-md-12">
                         <label for="numeroVuelo">Número de vuelo:</label>
-                        <input type="text" class="form-control" name="numeroVuelo" placeholder="Número de vuelo" value="{{ old('numeroVuelo', 'DEF123') }}">
+                        <input type="text" class="form-control" name="numeroVuelo" placeholder="Número de vuelo" value="{{ $vuelos->numero_vuelo }}">
                         <small class="text-danger">{{ $errors->first('numeroVuelo') }}</small>
                     </div>
+
+                    <!-- Origen -->
+                    <div class="form-group col-md-12">
+                        <label for="origen">Origen:</label>
+                        <input type="text" class="form-control" name="origen" placeholder="Origen del vuelo" value="{{ $vuelos->origen }}">
+                        <small class="text-danger">{{ $errors->first('origen') }}</small>
+                    </div>
+
+                    <!-- Destino -->
+                    <div class="form-group col-md-12">
+                        <label for="destino">Destino:</label>
+                        <input type="text" class="form-control" name="destino" placeholder="Destino del vuelo" value="{{ $vuelos->destino }}">
+                        <small class="text-danger">{{ $errors->first('destino') }}</small>
+                    </div>
+
+                    <!-- Fecha de salida -->
+                    <div class="form-group col-md-12">
+                        <label for="fechaSalida">Fecha de salida:</label>
+                        <input type="text" id="fecha-ida" class="form-control" name="fechaSalida" placeholder="Fecha y hora de salida" value="{{ $vuelos->fecha_salida }}">
+                        <small class="text-danger">{{ $errors->first('fechaSalida') }}</small>
+                    </div>
+
+                    <!-- Fecha de llegada -->
+                    <div class="form-group col-md-12">
+                        <label for="fechaLlegada">Fecha de llegada:</label>
+                        <input type="text" id="fecha-vuelta" class="form-control" name="fechaLlegada" placeholder="Fecha y hora de llegada" value="{{ $vuelos->fecha_llegada }}">
+                        <small class="text-danger">{{ $errors->first('fechaLlegada') }}</small>
+                    </div>
+
+                    <!-- Duración (solo lectura) -->
+                    <div class="form-group col-md-12">
+                        <label for="duracion">Duración del vuelo (horas):</label>
+                        <input type="text" id="duracion" class="form-control" name="duracion" value="{{$vuelos->duracion}}" placeholder="Duración estimada (ingresa las fechas para hacer el cálculo)" readonly>
+                    </div>
+
+                    <!-- Aerolínea -->
                     <div class="form-group col-md-12">
                         <label for="aerolinea">Aerolínea:</label>
                         <select name="aerolinea" class="form-control">
-                            <option {{ old('aerolinea') == 'Aeromexico' ? 'selected' : '' }}>Aeromexico</option>
-                            <option {{ old('aerolinea') == 'United Airlines' ? 'selected' : '' }}>United Airlines</option>
-                            <option {{ old('aerolinea') == 'Delta' ? 'selected' : '' }}>Delta</option>
-                            <option {{ old('aerolinea') == 'Volaris' ? 'selected' : '' }}>Volaris</option>
+                            
+                            @foreach($ar as $ar)
+                            <option value="{{$ar->id}}" {{old('aerolinea')}}>{{$ar->nombre}}</option>
+                            @endforeach
+
                         </select>
                         <small class="text-danger">{{ $errors->first('aerolinea') }}</small>
                     </div>
-                </div>
 
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="horario">Horario:</label>
-                        <input type="datetime-local" class="form-control" name="horario" value="{{ old('horario', now()->format('Y-m-d\TH:i')) }}">
-                        <small class="text-danger">{{ $errors->first('horario') }}</small>
-                    </div>
+                    <!-- Precio por pasajero -->
                     <div class="form-group col-md-12">
                         <label for="precio">Precio por pasajero:</label>
-                        <input type="number" class="form-control" name="precio" placeholder="Precio" value="{{ old('precio', 1000) }}">
+                        <select name="precio" class="form-control">
+
+                            @foreach($pre as $pre)
+                            <option value="{{$pre->id}}" {{old('precio')}}>{{$pre->clase }} - ${{$pre->precio}}</option>
+                            @endforeach
+
+                        </select>
                         <small class="text-danger">{{ $errors->first('precio') }}</small>
                     </div>
-                </div>
 
-                <div class="form-row">
+                    <!-- Escalas -->
                     <div class="form-group col-md-12">
                         <label for="escalas">Escalas:</label>
-                        <select name="escalas" class="form-control">
-                            <option {{ old('escalas') == 'Directo' ? 'selected' : '' }}>Directo</option>
-                            <option {{ old('escalas') == '1 Escala' ? 'selected' : '' }}>1 Escala</option>
-                            <option {{ old('escalas') == '2 Escalas' ? 'selected' : '' }}>2 Escalas</option>
-                            <option {{ old('escalas') == '3 Escalas' ? 'selected' : '' }}>3 Escalas</option>
-                        </select>
+                        <input type="text" class="form-control" name="escalas" placeholder="Escalas del vuelo" value="{{ $vuelos->escalas }}">
                         <small class="text-danger">{{ $errors->first('escalas') }}</small>
                     </div>
-                    <div class="form-group col-md-12">
-                        <label for="asientos">Número de asientos del vuelo:</label>
-                        <input type="number" class="form-control" name="asientos" placeholder="Asientos" value="{{ old('asientos', 150) }}">
-                        <small class="text-danger">{{ $errors->first('asientos') }}</small>
-                    </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="duracion">Duración:</label>
-                        <select name="duracion" class="form-control">
-                            <option {{ old('duracion') == '1 hora' ? 'selected' : '' }}>1 hora</option>
-                            <option {{ old('duracion') == '2 horas' ? 'selected' : '' }}>2 horas</option>
-                            <option {{ old('duracion') == '3 horas' ? 'selected' : '' }}>3 horas</option>
-                            <option {{ old('duracion') == '4 horas' ? 'selected' : '' }}>4 horas</option>
-                        </select>
-                    </div>
-                </div>
-
+                <!-- Botones -->
                 <div class="form-group text-center">
-                    <button type="button" style="background: rgb(253, 103, 103); color:white" class="btn btn-secondary">
-                        <a href="/vuelosAdmiAdministrar" style="color:white">Cancelar</a>
+                    <button type="button" class="btn btn-secondary" style="background: rgb(253, 103, 103); color:white">
+                        <a href="{{route('vuelos.index')}}" style="color:white">Cancelar</a>
                     </button>
-                    <button type="submit" style="background: rgb(147, 194, 235)" class="btn">Modificar</button>
+                    <button type="submit" class="btn btn-success">Actualizar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-@if(session('exito'))
-    <script>
-        Swal.fire({
-            title: "Exito!",
-            text: "{{ session('exito') }}",
-            icon: "success"
-        });
-    </script>
-@endif
+<script>
+    // Inicializar flatpickr
+    flatpickr("#fecha-ida", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i:S",
+        time_24hr: true,
+        onChange: calcularDuracion
+    });
 
-@if($errors->any())
-    <script>
-        let errorMessages = '<ul>';
-        @foreach ($errors->all() as $error)
-            errorMessages += '<li>{{ $error }}</li>';
-        @endforeach
-        errorMessages += '</ul>';
+    flatpickr("#fecha-vuelta", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i:S",
+        time_24hr: true,
+        onChange: calcularDuracion
+    });
 
-        Swal.fire({
-            title: "Error!",
-            html: errorMessages,
-            icon: "error"
-        });
-    </script>
-@endif
+    // Función para calcular la duración en horas
+    function calcularDuracion() {
+        const fechaSalida = document.getElementById('fecha-ida').value;
+        const fechaLlegada = document.getElementById('fecha-vuelta').value;
+
+        if (fechaSalida && fechaLlegada) {
+            const fechaSalidaObj = new Date(fechaSalida);
+            const fechaLlegadaObj = new Date(fechaLlegada);
+
+            if (fechaLlegadaObj < fechaSalidaObj) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'La fecha de llegada no puede ser anterior o mayor a la fecha de salida.',
+                    confirmButtonColor: '#dc3545'
+                });
+                document.getElementById('fecha-ida').value = '';
+                document.getElementById('duracion').value = ''; // Limpiar duración
+            } else {
+                const diff = (fechaLlegadaObj - fechaSalidaObj) / (1000 * 60 * 60);
+                document.getElementById('duracion').value = diff.toFixed(2); // Mostrar duración en horas
+            }
+        }
+    }
+</script>
 
 @endsection

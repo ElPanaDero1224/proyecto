@@ -8,9 +8,26 @@ use App\Http\Controllers\recuperacionContraseña;
 use App\Http\Controllers\registroNewVuelo;
 use App\Http\Controllers\modificarVuelosDestinos;
 
+use App\Http\Controllers\AerolineasController;
+use App\Http\Controllers\PreciosController;
+use App\Http\Controllers\VuelosController;
+use App\Http\Controllers\DisponibilidadAsientosController;
 
-//
-Route::get('/vuelosAdmi', [busquedaVuelosAdmi::class,'busquedaVuelosAdmi'])->name('rutabusquedaVuelosAdmi'); //pendiente
+
+
+Route::resource("aerolineas", AerolineasController::class);
+Route::resource("precios", PreciosController::class);
+Route::resource("vuelos", VuelosController::class);
+Route::resource('disponibilidad_asientos', DisponibilidadAsientosController::class);
+
+#Route::view('/verAerolineasAdmin', 'verAerolineasAdmin');
+#Route::view('/registroNewAerolineaAdmin', 'registroNewAerolineaAdmin');
+#Route::view('/verPreciosAdmin', 'verPreciosAdmin');
+#Route::view('/registroNewPrecioAdmin','registroNewPrecioAdmin');
+
+
+
+#Route::get('/vuelosAdmi', [busquedaVuelosAdmi::class,'busquedaVuelosAdmi'])->name('rutabusquedaVuelosAdmi'); //pendiente
 Route::get('/vuelosAdmiAdministrar', [administrarVuelos::class,'administrarVuelos'])->name('administrarVuelos'); //mine listo completamente
 Route::get('/panel', [panelPrincipal::class, 'panelPrincipal'])->name('panelPrincipal'); //mine listo por completo panelprincipal
 route::get('/recuperacion', [recuperacionContraseña::class,'recuperacionContraseña'])->name('recuperacionContraseña'); //mine listo por completo /recuperacion

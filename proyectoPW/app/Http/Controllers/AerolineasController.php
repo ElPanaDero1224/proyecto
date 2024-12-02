@@ -12,7 +12,8 @@ class AerolineasController extends Controller
      */
     public function index()
     {
-        //
+        $consulta = aerolineas::all();
+        return view("verAerolineasAdmin", compact("consulta"));
     }
 
     /**
@@ -20,7 +21,7 @@ class AerolineasController extends Controller
      */
     public function create()
     {
-        //
+        return view("registroNewAerolineaAdmin");
     }
 
     /**
@@ -28,7 +29,13 @@ class AerolineasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $addAerolinea = new aerolineas();
+        $addAerolinea->nombre = $request->input("aerolinea");
+
+        $addAerolinea->save();
+
+        $nombre = $request->input("aerolinea");
+        return to_route('aerolineas.index')->with('success', 'La aerolinea '.$nombre. ' se ha agregado');
     }
 
     /**
@@ -42,24 +49,45 @@ class AerolineasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(aerolineas $aerolineas)
+    public function edit(aerolineas $request, $id)
     {
-        //
+        $ar = aerolineas::find($id);
+        return view("modificarAerolinea", compact("ar"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, aerolineas $aerolineas)
+    public function update(Request $request, $id)
     {
-        //
+
+        $upAerolinea = aerolineas::find($id);
+        $upAerolinea->nombre = $request->input("aerolinea");
+        $upAerolinea->update();
+
+        return to_route("aerolineas.index")->with('success', 'La aerolinea se ha actualizado');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(aerolineas $aerolineas)
+    public function destroy(aerolineas $request, $id)
     {
-        //
+        $aerolinea = Aerolineas::find($id);
+
+        
+        if ($aerolinea) {
+            $nombre = $aerolinea->nombre; 
+            $aerolinea->delete(); 
+
+            session()->flash('success', 'La aerolínea ' . $nombre . ' se ha eliminado.');
+        } else {
+ 
+            session()->flash('error', 'La aerolínea con ID ' . $id . ' no existe.');
+        }
+
+        return to_route('aerolineas.index');
+
+
     }
 }

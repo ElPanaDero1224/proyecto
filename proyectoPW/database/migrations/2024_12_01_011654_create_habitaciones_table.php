@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('precio_por_noche');
             $table->integer('disponibilidad');
             $table->unsignedBigInteger('hotel_id');
-            $table->foreign('hotel_id')->references('id')->on('hoteles');
+            $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->timestamps();
         });
     }

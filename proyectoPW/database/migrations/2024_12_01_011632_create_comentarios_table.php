@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios');
             $table->unsignedBigInteger('hotel_id');
-            $table->foreign('hotel_id')->references('id')->on('hoteles');
+            $table->foreign('hotel_id')->references('id')->on('hotels');
             $table->timestamps();
         });
     }

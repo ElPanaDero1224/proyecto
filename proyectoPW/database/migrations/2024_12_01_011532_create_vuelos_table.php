@@ -19,10 +19,12 @@ return new class extends Migration
             $table->dateTime('fecha_salida');
             $table->dateTime('fecha_llegada');
             $table->string('duracion',255);
-            $table->string('escalas',255);
-            $table->unsignedBigInteger('aerolinea_id');
+            #dato opcional
+            $table->string('escalas',255)->nullable();
+            $table->unsignedBigInteger('aerolinea_id')->nullable();
+            #finDatoOpcional
             $table->foreign('aerolinea_id')->references('id')->on('aerolineas');
-            $table->unsignedBigInteger('precio_id');
+            $table->unsignedBigInteger('precio_id')->nullable();
             $table->foreign('precio_id')->references('id')->on('precios');
             $table->timestamps();
         });

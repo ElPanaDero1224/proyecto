@@ -5,23 +5,37 @@
 
 <div class="container mt-5">
 
-    {{-- formulario para agregar un nuevo vuelo --}}
-
+    {{-- Formulario para agregar un nuevo vuelo --}}
     <div class="d-flex justify-content-end mb-3">
         <a href="{{route('vuelos.create')}}" class="btn btn-add me-2" style="background-color: #01a03e; color: #fff;">Agregar nuevo vuelo</a>
-        <a href="{{route('aerolineas.index')}}" class="btn btn-add me-2" style="background-color: #019AA0; color: #fff;">Mostrar aerolineas</a>
+        <a href="{{route('aerolineas.index')}}" class="btn btn-add me-2" style="background-color: #019AA0; color: #fff;">Mostrar aerolíneas</a>
         <a href="{{route('precios.index')}}" class="btn btn-add me-2" style="background-color: #019AA0; color: #fff;">Mostrar precios/clases</a>
         <a href="{{route('disponibilidad_asientos.index')}}" class="btn btn-add me-2" style="background-color: #dfd662; color: #000000;">Mostrar Asientos</a>
     </div>
 
-    {{-- Mostrar aerolineas --}}
+    {{-- Filtros --}}
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <label for="filter-origen" class="form-label">Origen</label>
+            <input type="text" id="filter-origen" class="form-control" placeholder="Buscar por origen">
+        </div>
+        <div class="col-md-3">
+            <label for="filter-destino" class="form-label">Destino</label>
+            <input type="text" id="filter-destino" class="form-control" placeholder="Buscar por destino">
+        </div>
+        <div class="col-md-3">
+            <label for="filter-fecha" class="form-label">Fecha de salida</label>
+            <input type="date" id="filter-fecha" class="form-control">
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <button id="reset-filters" class="btn btn-secondary w-100">Resetear Filtros</button>
+        </div>
+    </div>
 
-
-
-
+    {{-- Tabla de vuelos --}}
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="vuelos-table">
                 <thead>
                     <tr>
                         <th>Numero de vuelo</th>
@@ -34,30 +48,75 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
                     @foreach($consulta as $vuelo)
                     <tr>
                         <td>{{ $vuelo->numero_vuelo }}</td>
-                        <td>{{ $vuelo->origen }}</td>
-                        <td>{{ $vuelo->destino }}</td>
-                        <td>{{ $vuelo->fecha_salida }}</td>
+                        <td class="origen">{{ $vuelo->origen }}</td>
+                        <td class="destino">{{ $vuelo->destino }}</td>
+                        <td class="fecha-salida">{{ $vuelo->fecha_salida }}</td>
                         <td>{{ $vuelo->fecha_llegada }}</td>
                         <td>{{ $vuelo->duracion }} - hr</td>
                         <td class="text-center">
-                            <a href="{{route('vuelos.edit', $vuelo->id)}}" onclick="confirmModify('MX456')" class="btn btn-modificar btn-sm me-2" style="background-color: #17a2b8; color: #fff;">Modificar</a>
+                            <a href="{{route('vuelos.edit', $vuelo->id)}}" class="btn btn-modificar btn-sm me-2" style="background-color: #17a2b8; color: #fff;">Modificar</a>
                             <button onclick="confirmDelete('{{ $vuelo->id }}', '{{ $vuelo->numero_vuelo }}')" class="btn btn-delete btn-sm" style="background-color: #EB5C6D; color: white">Borrar</button>
-                            {{-- asientos --}}
-                            
                         </td>
                     </tr>
                     @endforeach
-
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+
+
+
+
 <script>
+// Función para aplicar filtros
+document.addEventListener('DOMContentLoaded', () => {
+        const origenInput = document.getElementById('filter-origen');
+        const destinoInput = document.getElementById('filter-destino');
+        const fechaInput = document.getElementById('filter-fecha');
+        const resetButton = document.getElementById('reset-filters');
+        const tableRows = document.querySelectorAll('#vuelos-table tbody tr');
+
+        function filterTable() {
+            const origenValue = origenInput.value.toLowerCase();
+            const destinoValue = destinoInput.value.toLowerCase();
+            const fechaValue = fechaInput.value;
+
+            tableRows.forEach(row => {
+                const origenText = row.querySelector('.origen').textContent.toLowerCase();
+                const destinoText = row.querySelector('.destino').textContent.toLowerCase();
+                const fechaText = row.querySelector('.fecha-salida').textContent;
+
+                const matchesOrigen = origenText.includes(origenValue);
+                const matchesDestino = destinoText.includes(destinoValue);
+                const matchesFecha = !fechaValue || fechaText === fechaValue;
+
+                if (matchesOrigen && matchesDestino && matchesFecha) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Event listeners para filtros
+        origenInput.addEventListener('input', filterTable);
+        destinoInput.addEventListener('input', filterTable);
+        fechaInput.addEventListener('change', filterTable);
+
+        // Resetear filtros
+        resetButton.addEventListener('click', () => {
+            origenInput.value = '';
+            destinoInput.value = '';
+            fechaInput.value = '';
+            filterTable();
+        });
+    });
+
     // Mostrar mensaje de éxito o error
     @if(session('success'))
         Swal.fire({

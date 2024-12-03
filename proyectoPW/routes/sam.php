@@ -25,14 +25,19 @@ Route::resource('disponibilidad_asientos', DisponibilidadAsientosController::cla
 #Route::view('/verPreciosAdmin', 'verPreciosAdmin');
 #Route::view('/registroNewPrecioAdmin','registroNewPrecioAdmin');
 
+Route::get('/vuelosDestino', [VuelosController::class, 'table']);
+
+Route::post('/busquedaVuelosSearch', [VuelosController::class, 'busqueda']);
+
 
 
 #Route::get('/vuelosAdmi', [busquedaVuelosAdmi::class,'busquedaVuelosAdmi'])->name('rutabusquedaVuelosAdmi'); //pendiente
 Route::get('/vuelosAdmiAdministrar', [administrarVuelos::class,'administrarVuelos'])->name('administrarVuelos'); //mine listo completamente
 Route::get('/panel', [panelPrincipal::class, 'panelPrincipal'])->name('panelPrincipal'); //mine listo por completo panelprincipal
-route::get('/recuperacion', [recuperacionContraseña::class,'recuperacionContraseña'])->name('recuperacionContraseña'); //mine listo por completo /recuperacion
-route::get('/vuelosAdmiNew', [registroNewVuelo::class,'registroNewVuelo'])->name('registroNewVuelo'); //mine listo completamente
+Route::get('/recuperacion', [recuperacionContraseña::class,'recuperacionContraseña'])->name('recuperacionContraseña'); //mine listo por completo /recuperacion
+Route::get('/vuelosAdmiNew', [registroNewVuelo::class,'registroNewVuelo'])->name('registroNewVuelo'); //mine listo completamente
 Route::get('/modVuelDest', [modificarVuelosDestinos::class,'modificarVueloDestino'])->name('modVuelDest'); //mine listo completamente
+
 
 
 //Formulario

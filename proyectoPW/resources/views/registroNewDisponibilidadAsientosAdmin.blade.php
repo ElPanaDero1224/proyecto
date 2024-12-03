@@ -27,30 +27,11 @@
                     <!-- Disponibilidad total -->
                     <div class="form-group col-md-12">
                         <label for="disponibilidad">Disponibilidad Total:</label>
-                        <input type="number" class="form-control" id="disponibilidad" name="disponibilidad" placeholder="Asientos totales" value="{{ old('disponibilidad') }}" readonly>
+                        <input type="number" class="form-control" id="disponibilidad" name="disponibilidad" placeholder="Asientos totales" value="{{ old('disponibilidad') }}">
                         <small class="text-danger">{{ $errors->first('disponibilidad') }}</small>
                     </div>
-                    
-                    <!-- Uso por adultos -->
-                    <div class="form-group col-md-12">
-                        <label for="adultos">Uso por adultos:</label>
-                        <input type="number" class="form-control uso" name="adultos" id="adultos" placeholder="Asientos para adultos" value="{{ old('adultos') }}">
-                        <small class="text-danger">{{ $errors->first('adultos') }}</small>
-                    </div>
-                    
-                    <!-- Uso por niños -->
-                    <div class="form-group col-md-12">
-                        <label for="ninos">Uso por niños:</label>
-                        <input type="number" class="form-control uso" name="ninos" id="ninos" placeholder="Asientos para niños" value="{{ old('ninos') }}">
-                        <small class="text-danger">{{ $errors->first('ninos') }}</small>
-                    </div>
-                    
-                    <!-- Uso por ancianos -->
-                    <div class="form-group col-md-12">
-                        <label for="ancianos">Uso por Ancianos:</label>
-                        <input type="number" class="form-control uso" name="ancianos" id="ancianos" placeholder="Asientos para ancianos" value="{{ old('ancianos') }}">
-                        <small class="text-danger">{{ $errors->first('ancianos') }}</small>
-                    </div>
+
+
 
                     <!-- Vuelo -->
                     <div class="form-group col-md-12">

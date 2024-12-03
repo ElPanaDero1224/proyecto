@@ -18,9 +18,7 @@ class DisponibilidadAsientosController extends Controller
             'disponibilidad_asientos.id as asiento_id', 
             'disponibilidad_asientos.tipo_asiento', 
             'disponibilidad_asientos.disponibilidad_total', 
-            'disponibilidad_asientos.uso_adultos', 
-            'disponibilidad_asientos.uso_niños', 
-            'disponibilidad_asientos.uso_ancianos',
+            'disponibilidad_asientos.disponibilidadReferencia', 
             'vuelos.id as vuelo_id', 
             'vuelos.numero_vuelo'
         )
@@ -47,9 +45,7 @@ class DisponibilidadAsientosController extends Controller
 
         $disponibilidad->tipo_asiento = $request->input('asiento');
         $disponibilidad->disponibilidad_total = $request->input('disponibilidad');
-        $disponibilidad->uso_adultos = $request->input('adultos');
-        $disponibilidad->uso_niños = $request->input('ninos');
-        $disponibilidad->uso_ancianos = $request->input('ancianos');
+        $disponibilidad->disponibilidadReferencia = $request->input('disponibilidad');
         $disponibilidad->vuelo_id = $request->input('vuelo'); // Relación con el vuelo
         $disponibilidad->save();
     
@@ -84,9 +80,7 @@ class DisponibilidadAsientosController extends Controller
         $disponibilidad_asientos = disponibilidad_asientos::find($id);
         $disponibilidad_asientos->tipo_asiento = $request->input('asiento');
         $disponibilidad_asientos->disponibilidad_total = $request->input('disponibilidad');
-        $disponibilidad_asientos->uso_adultos = $request->input('adultos');
-        $disponibilidad_asientos->uso_niños = $request->input('ninos');
-        $disponibilidad_asientos->uso_ancianos = $request->input('ancianos');
+        $disponibilidad_asientos->disponibilidadReferencia = $request->input('disponibilidad');
         $disponibilidad_asientos->vuelo_id = $request->input('vuelo'); 
         $disponibilidad_asientos->update();
 

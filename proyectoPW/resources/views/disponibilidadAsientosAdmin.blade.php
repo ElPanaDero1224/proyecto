@@ -27,9 +27,7 @@
                         <tr>
                             <th>Tipo de Asiento</th>
                             <th>Disponibilidad Total</th>
-                            <th>Uso por Adultos</th>
-                            <th>Uso por Niños</th>
-                            <th>Uso por Ancianos</th>
+                            <th>Disponibilidad Referencia</th>
                             <th>Numero Del vuelo</th>
                             <th>Acciones</th> {{-- Nueva columna para botones --}}
                         </tr>
@@ -39,9 +37,7 @@
                         <tr>
                             <td>{{ $asiento->tipo_asiento }}</td>
                             <td>{{ $asiento->disponibilidad_total }}</td>
-                            <td>{{ $asiento->uso_adultos }}</td>
-                            <td>{{ $asiento->uso_niños }}</td>
-                            <td>{{ $asiento->uso_ancianos }}</td>
+                            <td>{{ $asiento->disponibilidadReferencia }}</td>
                             <td>{{ $asiento->numero_vuelo }}</td>
                             <td class="text-center">
                                 {{-- Botón de Modificar --}}

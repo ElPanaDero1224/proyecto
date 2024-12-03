@@ -17,7 +17,7 @@
         <ul class="navbar-nav mx-auto">
             <li class="nav-item">
                 <!-- Vuelos: activo para /vuelos y cualquier subruta de /vuelos -->
-                <a href="/vuelos" class="nav-link d-flex flex-column align-items-center {{ Request::is('vuelos*') ? 'active' : '' }}">
+                <a href="/vuelosDestino" class="nav-link d-flex flex-column align-items-center {{ Request::is('vuelos*') ? 'active' : '' }}">
                     <i class="fas fa-plane"></i>
                     <span>Vuelos</span>
                 </a>

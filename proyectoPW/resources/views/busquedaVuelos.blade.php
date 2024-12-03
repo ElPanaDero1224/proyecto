@@ -14,7 +14,7 @@
 <div class="container mt-4">
     <div class="bg-light p-4 rounded shadow-sm">
         <h5 class="text-primary fw-bold">Vuelos</h5>
-        <form action="{{ route('rutabusquedaVuelos.store') }}" method="POST">
+        <form action="#" method="POST">
             @csrf
             <div class="row">
                 <div class="col-md-3 mb-3">
@@ -43,26 +43,7 @@
                 <div class="col-md-2 mb-3 d-flex align-items-end">
                     <button type="submit" class="btn btn-primary w-100">Buscar</button>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-3 mb-3">
-                    <label for="clase" class="form-label">Clases</label>
-                    <select class="form-select" id="clase" name="clase">
-                        <option>Económica</option>
-                        <option>Ejecutiva</option>
-                        <option>Primera Clase</option>
-                    </select>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label for="personas" class="form-label">No. Personas</label>
-                    <select class="form-select" id="personas" name="personas">
-                        <option>1 adulto</option>
-                        <option>2 adultos</option>
-                        <option>3 adultos</option>
-                    </select>
-                </div>
+            
             </div>
         </form>
     </div>

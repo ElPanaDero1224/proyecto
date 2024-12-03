@@ -165,7 +165,12 @@
                 <td>{{ $vuelo->duracion }}</td>
                 <td class="precio">{{ $vuelo->precio }}</td>
                 <td>{{ $vuelo->escalas !== null && $vuelo->escalas ? 'Sí' : 'No' }}</td>
-                <td>{{ $vuelo->disponibilidadReferencia }}</td>
+                <td>{{ $vuelo->disponibilidadReferencia }} -
+                    <span class="badge 
+                        {{ $vuelo->disponibilidadReferencia > 0 ? 'bg-success' : 'bg-danger' }}">
+                        {{ $vuelo->disponibilidadReferencia > 0 ? 'Disponible' : 'No disponible' }}
+                    </span>
+                </td>
             </tr>
             @endforeach
         </tbody>

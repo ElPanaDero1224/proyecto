@@ -29,22 +29,29 @@ class UsuariosController extends Controller
     }
 
     public function iniciarsesion(InicioSesionRequest $request)
-{
-    $usuario = usuarios::where('email', $request->email)->first();
-
-    if (!$usuario || !Hash::check($request->password, $usuario->password)) {
-        return back()->withErrors(['email' => 'Credenciales incorrectas.']);
+    {
+        $usuario = usuarios::where('email', $request->email)->first();
+    
+        if (!$usuario || !Hash::check($request->password, $usuario->password)) {
+            return back()->withErrors(['email' => 'Credenciales incorrectas.']);
+        }
+    
+        // Enviar código 2FA
+        $this->enviarCodigo2FA($usuario);
+    
+        // Guardar el ID del usuario en sesión temporal para 2FA
+        session(['usuario_id' => $usuario->id]);
+    
+        // Verificar el rol del usuario y redirigir según corresponda
+        if ($usuario->rol_id == 1) {
+            // Redirigir al administrador
+            return redirect()->route('vuelos.index')->with('exito', 'Se ha enviado un código de verificación a tu correo.');
+        } else {
+            // Redirigir al cliente
+            return redirect()->route('rutavuelosDestino')->with('exito', 'Se ha enviado un código de verificación a tu correo.');
+        }
     }
-
-    // Enviar código 2FA
-    $this->enviarCodigo2FA($usuario);
-
-    // Guardar el ID del usuario en sesión temporal para 2FA
-    session(['usuario_id' => $usuario->id]);
-
-    // Redirigir al formulario de verificación
-    return redirect()->route('ruta2fa')->with('exito', 'Se ha enviado un código de verificación a tu correo.');
-}
+    
 
 
 

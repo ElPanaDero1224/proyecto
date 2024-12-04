@@ -28,7 +28,7 @@
                     <div class="form-group col-md-12">
                         <label for="nombreClase">Precio de la clase:</label>
                         <input type="text" class="form-control" name="precioClase" placeholder="Precio de la clase" value="{{ $precio->precio }}">
-                        <small class="text-danger">{{ $errors->first('nombreClase') }}</small>
+                        <small class="text-danger">{{ $errors->first('precioClase') }}</small>
                     </div>
 
                     

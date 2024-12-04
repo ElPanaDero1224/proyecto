@@ -29,6 +29,21 @@ class PreciosController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'nombreClase' => 'required|string|max:80|unique:precios,clase',
+            'precioClase' => 'required|numeric|min:0',
+        ], [
+            // Mensajes personalizados
+            'nombreClase.required' => 'El nombre de la clase es obligatorio.',
+            'nombreClase.string' => 'El nombre de la clase debe ser un texto válido.',
+            'nombreClase.max' => 'El nombre de la clase no puede exceder los 80 caracteres.',
+            'nombreClase.unique' => 'La clase ya existe en el sistema.',
+            'precioClase.required' => 'El precio de la clase es obligatorio.',
+            'precioClase.numeric' => 'El precio debe ser un número válido.',
+            'precioClase.min' => 'El precio no puede ser negativo.',
+        ]);
+
         $addPrecio = new precios();
     
         // Asignar los valores correctamente
@@ -63,6 +78,20 @@ class PreciosController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'nombreClase' => 'required|string|max:80|unique:precios,clase',
+            'precioClase' => 'required|numeric|min:0',
+        ], [
+            // Mensajes personalizados
+            'nombreClase.required' => 'El nombre de la clase es obligatorio.',
+            'nombreClase.string' => 'El nombre de la clase debe ser un texto válido.',
+            'nombreClase.max' => 'El nombre de la clase no puede exceder los 80 caracteres.',
+            'nombreClase.unique' => 'La clase ya existe en el sistema.',
+            'precioClase.required' => 'El precio de la clase es obligatorio.',
+            'precioClase.numeric' => 'El precio debe ser un número válido.',
+            'precioClase.min' => 'El precio no puede ser negativo.',
+        ]);
+        
 
         $upPrecio = precios::find($id);
         $upPrecio->clase = $request->input("nombreClase");

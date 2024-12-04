@@ -40,6 +40,22 @@ class DisponibilidadAsientosController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'asiento' => 'required|string|max:255',
+            'disponibilidad' => 'required|integer|min:0',
+            'vuelo' => 'required|exists:vuelos,id', // Verifica que el vuelo existe en la tabla 'vuelos'
+        ], [
+            // Mensajes personalizados
+            'asiento.required' => 'El tipo de asiento es obligatorio.',
+            'asiento.string' => 'El tipo de asiento debe ser un texto válido.',
+            'asiento.max' => 'El tipo de asiento no puede exceder los 255 caracteres.',
+            'disponibilidad.required' => 'La disponibilidad total es obligatoria.',
+            'disponibilidad.integer' => 'La disponibilidad debe ser un número entero.',
+            'disponibilidad.min' => 'La disponibilidad no puede ser negativa.',
+            'vuelo.required' => 'El vuelo asociado es obligatorio.',
+            'vuelo.exists' => 'El vuelo seleccionado no existe en el sistema.',
+        ]);
+        
 
         $disponibilidad = new disponibilidad_asientos();
 

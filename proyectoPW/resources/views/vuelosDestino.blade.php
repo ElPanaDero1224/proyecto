@@ -171,11 +171,31 @@
                         {{ $vuelo->disponibilidadReferencia > 0 ? 'Disponible' : 'No disponible' }}
                     </span>
                 </td>
+                <td>
+                <a 
+                    href="{{ route('form', $vuelo->disponibilidad_id) }}" 
+                    class="btn btn-primary {{ $vuelo->disponibilidadReferencia > 0 ? '' : 'disabled' }}" 
+                    {{ $vuelo->disponibilidadReferencia > 0 ? '' : 'aria-disabled="true"' }}>
+                    Registrar Vuelo
+                </a>
+                </td>
+
             </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: '¡Éxito!',
+        text: "{{ session('success') }}",
+        confirmButtonText: 'Aceptar'
+    });
+</script>
+@endif
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>

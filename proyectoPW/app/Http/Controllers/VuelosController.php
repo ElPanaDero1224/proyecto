@@ -11,6 +11,7 @@ use App\Models\disponibilidad_asientos;
 
 
 
+
 class VuelosController extends Controller
 {
     /**
@@ -21,6 +22,10 @@ class VuelosController extends Controller
         $consulta = vuelos::all();
         return view("busquedaVuelosAdmi", compact('consulta'));
     }
+
+
+
+    
 
 
     #abre la vista del buscador
@@ -38,7 +43,8 @@ class VuelosController extends Controller
         'vuelos.duracion',
         'precios.precio',
         'vuelos.escalas',
-        'disponibilidad_asientos.disponibilidadReferencia'
+        'disponibilidad_asientos.disponibilidadReferencia',
+        'disponibilidad_asientos.id as disponibilidad_id'
     );
 
 
@@ -87,7 +93,8 @@ class VuelosController extends Controller
                 'vuelos.duracion',
                 'precios.precio',
                 'vuelos.escalas',
-                'disponibilidad_asientos.disponibilidadReferencia'
+                'disponibilidad_asientos.disponibilidadReferencia',
+                'disponibilidad_asientos.id as disponibilidad_id'
             )
             ->get();
 
@@ -113,6 +120,26 @@ class VuelosController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'numeroVuelo' => 'required|integer|min:1',
+            'origen' => 'required|string|max:255',
+            'destino' => 'required|string|max:255',
+            'fechaSalida' => 'required|date|before_or_equal:fechaLlegada',
+            'fechaLlegada' => 'required|date|after_or_equal:fechaSalida',
+            'duracion' => 'required|string|max:255',
+            'escalas' => 'nullable|string|max:255',
+            'aerolinea' => 'nullable|exists:aerolineas,id',
+            'precio' => 'nullable|exists:precios,id',
+        ], [
+            // Mensajes personalizados
+            'numeroVuelo.required' => 'El número de vuelo es obligatorio.',
+            'numeroVuelo.integer' => 'El número de vuelo debe ser un número entero.',
+            'fechaSalida.before_or_equal' => 'La fecha de salida debe ser igual o anterior a la fecha de llegada.',
+            'fechaLlegada.after_or_equal' => 'La fecha de llegada debe ser igual o posterior a la fecha de salida.',
+            'aerolinea.exists' => 'La aerolínea seleccionada no es válida.',
+            'precio.exists' => 'El precio seleccionado no es válido.',
+        ]);
     
         // Crear una nueva instancia de Vuelo
         $addVuelo = new vuelos();
@@ -156,11 +183,36 @@ class VuelosController extends Controller
 
     }
 
+
+
+
+
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'numeroVuelo' => 'required|integer|min:1',
+            'origen' => 'required|string|max:255',
+            'destino' => 'required|string|max:255',
+            'fechaSalida' => 'required|date|before_or_equal:fechaLlegada',
+            'fechaLlegada' => 'required|date|after_or_equal:fechaSalida',
+            'duracion' => 'required|string|max:255',
+            'escalas' => 'nullable|string|max:255',
+            'aerolinea' => 'nullable|exists:aerolineas,id',
+            'precio' => 'nullable|exists:precios,id',
+        ], [
+            // Mensajes personalizados
+            'numeroVuelo.required' => 'El número de vuelo es obligatorio.',
+            'numeroVuelo.integer' => 'El número de vuelo debe ser un número entero.',
+            'fechaSalida.before_or_equal' => 'La fecha de salida debe ser igual o anterior a la fecha de llegada.',
+            'fechaLlegada.after_or_equal' => 'La fecha de llegada debe ser igual o posterior a la fecha de salida.',
+            'aerolinea.exists' => 'La aerolínea seleccionada no es válida.',
+            'precio.exists' => 'El precio seleccionado no es válido.',
+        ]);
 
         $vuelo = vuelos::find($id);
 

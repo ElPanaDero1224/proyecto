@@ -87,7 +87,7 @@
                     <!-- Escalas -->
                     <div class="form-group col-md-12">
                         <label for="escalas">Escalas:</label>
-                        <input type="text" class="form-control" name="escalas" placeholder="Escalas del vuelo" value="{{ old('escalas') }}">
+                        <input type="text" class="form-control" name="escalas" placeholder="Escalas del vuelo (Dejar en blanco si no cuenta con ellas)" value="{{ old('escalas') }}">
                         <small class="text-danger">{{ $errors->first('escalas') }}</small>
                     </div>
                 </div>

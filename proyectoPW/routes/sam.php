@@ -12,6 +12,7 @@ use App\Http\Controllers\AerolineasController;
 use App\Http\Controllers\PreciosController;
 use App\Http\Controllers\VuelosController;
 use App\Http\Controllers\DisponibilidadAsientosController;
+use App\Http\Controllers\VuelosEnReservasVuelosController;
 
 
 
@@ -19,16 +20,19 @@ Route::resource("aerolineas", AerolineasController::class);
 Route::resource("precios", PreciosController::class);
 Route::resource("vuelos", VuelosController::class);
 Route::resource('disponibilidad_asientos', DisponibilidadAsientosController::class);
+Route::resource('vuelos_en_reservas_vuelos', VuelosEnReservasVuelosController::class);
 
 #Route::view('/verAerolineasAdmin', 'verAerolineasAdmin');
 #Route::view('/registroNewAerolineaAdmin', 'registroNewAerolineaAdmin');
 #Route::view('/verPreciosAdmin', 'verPreciosAdmin');
 #Route::view('/registroNewPrecioAdmin','registroNewPrecioAdmin');
 
-Route::get('/vuelosDestino', [VuelosController::class, 'table']);
+Route::get('/cosa/{id}', [VuelosEnReservasVuelosController::class, 'form'])->name('form');
+
+Route::get('/vuelosDestino', [VuelosController::class, 'table'])->name('vuelosDestino');
 
 Route::post('/busquedaVuelosSearch', [VuelosController::class, 'busqueda']);
-
+Route::post('/vuelos_en_reservas_vuelos/{id}', [VuelosEnReservasVuelosController::class, 'store'])->name('vuelos_en_reservas_vuelos.store');
 
 
 #Route::get('/vuelosAdmi', [busquedaVuelosAdmi::class,'busquedaVuelosAdmi'])->name('rutabusquedaVuelosAdmi'); //pendiente

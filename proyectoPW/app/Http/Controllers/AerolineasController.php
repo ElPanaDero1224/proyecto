@@ -29,6 +29,16 @@ class AerolineasController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'aerolinea' => 'required|string|max:255|unique:aerolineas,nombre',
+        ], [
+            // Mensajes personalizados
+            'aerolinea.required' => 'El nombre de la aerolínea es obligatorio.',
+            'aerolinea.string' => 'El nombre de la aerolínea debe ser un texto válido.',
+            'aerolinea.max' => 'El nombre de la aerolínea no puede exceder los 255 caracteres.',
+            'aerolinea.unique' => 'La aerolínea ya existe en el sistema.',
+        ]);
+        
         $addAerolinea = new aerolineas();
         $addAerolinea->nombre = $request->input("aerolinea");
 
@@ -60,6 +70,16 @@ class AerolineasController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'aerolinea' => 'required|string|max:255|unique:aerolineas,nombre',
+        ], [
+            // Mensajes personalizados
+            'aerolinea.required' => 'El nombre de la aerolínea es obligatorio.',
+            'aerolinea.string' => 'El nombre de la aerolínea debe ser un texto válido.',
+            'aerolinea.max' => 'El nombre de la aerolínea no puede exceder los 255 caracteres.',
+            'aerolinea.unique' => 'La aerolínea ya existe en el sistema.',
+        ]);
 
         $upAerolinea = aerolineas::find($id);
         $upAerolinea->nombre = $request->input("aerolinea");

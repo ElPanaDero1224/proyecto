@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+/*namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\validadorrestablecerContraseña;
@@ -19,4 +19,4 @@ class controladorrestablecerContraseña extends Controller
         return to_route('rutarestablecerpass');
         }
     
-}
+}*/

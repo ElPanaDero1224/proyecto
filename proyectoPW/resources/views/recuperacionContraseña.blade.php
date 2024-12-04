@@ -12,7 +12,7 @@
     
     <div class="form-section">
         <h2 class="form-title">Recuperar Contraseña</h2>
-        <form method="POST" action="{{route('recuperacionFormulario')}}">
+        <form method="POST" action="{{route('password.request')}}">
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Correo electrónico</label>

@@ -38,14 +38,13 @@ Route::post('/vuelos_en_reservas_vuelos/{id}', [VuelosEnReservasVuelosController
 #Route::get('/vuelosAdmi', [busquedaVuelosAdmi::class,'busquedaVuelosAdmi'])->name('rutabusquedaVuelosAdmi'); //pendiente
 Route::get('/vuelosAdmiAdministrar', [administrarVuelos::class,'administrarVuelos'])->name('administrarVuelos'); //mine listo completamente
 Route::get('/panel', [panelPrincipal::class, 'panelPrincipal'])->name('panelPrincipal'); //mine listo por completo panelprincipal
-Route::get('/recuperacion', [recuperacionContraseña::class,'recuperacionContraseña'])->name('recuperacionContraseña'); //mine listo por completo /recuperacion
-Route::get('/vuelosAdmiNew', [registroNewVuelo::class,'registroNewVuelo'])->name('registroNewVuelo'); //mine listo completamente
+
 Route::get('/modVuelDest', [modificarVuelosDestinos::class,'modificarVueloDestino'])->name('modVuelDest'); //mine listo completamente
 
 
 
 //Formulario
-Route::post('/recuperacionFormulario', [recuperacionContraseña::class,'recuperar'])->name('recuperacionFormulario');
+//Route::post('/recuperacionFormulario', [recuperacionContraseña::class,'recuperar'])->name('recuperacionFormulario');
 Route::post('/insertarVuelo', [registroNewVuelo::class,'registroVuelo'])->name('insertarVuelo');
 Route::post('/mdfcvls', [modificarVuelosDestinos::class,'mdfcvls'])->name('mdfcvls');
 

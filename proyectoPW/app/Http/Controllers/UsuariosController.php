@@ -195,7 +195,7 @@ class UsuariosController extends Controller
 
         // Iniciar sesión y redirigir
         Auth::login($usuario);
-        return redirect()->route('rutabusquedaVuelos')->with('exito', '¡Inicio de sesión exitoso!');
+        return redirect()->route('vuelosDestino')->with('exito', '¡Inicio de sesión exitoso!');
     }
 
 

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\habitaciones;
 use Illuminate\Http\Request;
 
-class HabitacionesController extends Controller
+class ComentarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +33,7 @@ class HabitacionesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(habitaciones $habitaciones)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +41,7 @@ class HabitacionesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(habitaciones $habitaciones)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +49,7 @@ class HabitacionesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, habitaciones $habitaciones)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +57,7 @@ class HabitacionesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(habitaciones $habitaciones)
+    public function destroy(string $id)
     {
         //
     }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('url_imagen',255);
             $table->longText('descripcion');
             $table->unsignedBigInteger('hotel_id');
-            $table->foreign('hotel_id')->references('id')->on('hotels');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
             $table->timestamps();
         });
     }

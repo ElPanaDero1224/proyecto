@@ -31,7 +31,7 @@ class ComentariosController extends Controller
     {
         // Validar los datos recibidos
         $request->validate([
-            'hotel_id' => 'required|integer|exists:hoteles,id',
+            'hotel_id' => 'required|integer|exists:hotels,id',
             'puntuacion' => 'required|integer|min:1|max:5',
             'comentario' => 'required|string|max:255',
         ]);

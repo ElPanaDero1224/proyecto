@@ -7,6 +7,17 @@
     <img src="{{ asset('images/piramide.png') }}" alt="Piramide">
 </div>
 
+@if(session('exito'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: '¡Registro Exitoso!',
+        text: '{{ session('exito') }}',
+        confirmButtonText: 'Entendido'
+    });
+</script>
+@endif
+
 <div class="form-section">
     <h2 class="form-title">Registro</h2>
     <form method="POST" action="{{ route('rutaregistro') }}">

@@ -22,8 +22,8 @@ class validadorrestablecerContraseña extends FormRequest
     public function rules(): array
     {
         return [
-            'Npassw'=>'required|min:8|max:20',
-            'Cpassw'=>'required|same:Npassw',
+            'password'=>'required|min:8|max:20',
+            'password_confirmation'=>'required|same:password',
     
         ];
     }

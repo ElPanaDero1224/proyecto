@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+/*
 use Illuminate\Http\Request;
 use App\Http\Requests\recuperacionContraseñaValidador;
 
@@ -20,4 +21,4 @@ class recuperacionContraseña extends Controller
         }
 
 
-}
+}*/

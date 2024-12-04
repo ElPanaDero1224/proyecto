@@ -28,7 +28,7 @@
         <button type="submit" class="btn btn-custom">Iniciar Sesión</button>
     </form>
     <p class="form-text mt-3">
-        ¿Has olvidado tu contraseña? <a href="{{ url('/recuperacion') }}">Haz clic aquí.</a>
+        ¿Has olvidado tu contraseña? <a href="{{ route('password.request') }}">Haz clic aquí.</a>
     </p>
     <p class="form-text mt-3">
         ¿No tienes una cuenta? <a href="{{ route('rutaregistro') }}">Regístrate</a>

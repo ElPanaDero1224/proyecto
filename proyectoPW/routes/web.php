@@ -20,8 +20,8 @@ Route::post('/iniciarSesion', [InicioSesionController::class, 'store'])->name('r
 
 // Otras rutas
 Route::view('/', 'inicioSesion')->name('rutainiciarsesion');
-Route::view('/recuperacion', 'recuperacionContraseña')->name('rutarrecuperarpass');
-Route::view('/restablecer', 'restablecerContraseña')->name('rutarestablecerpass');
+//Route::view('/recuperacion', 'recuperacionContraseña')->name('rutarrecuperarpass');
+//Route::view('/restablecer', 'restablecerContraseña')->name('rutarestablecerpass');
 Route::view('/registro', 'registro')->name('rutaregistro');
 Route::view('/vuelos', 'busquedaVuelos')->name('rutabusquedaVuelos');
 Route::view('/vuelosDestino', 'vuelosDestino')->name('rutavuelosDestino');

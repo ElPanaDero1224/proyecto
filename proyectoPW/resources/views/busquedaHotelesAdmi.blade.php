@@ -125,6 +125,11 @@
                     <!--<p class="rating">9.5/10</p>-->
                     <p class="location"><span style="font-weight: bold;">Descripcion:</span> {{$hotel->descripcion}}</p>
                     <p class="location"><span style="font-weight: bold;">Capacidad:</span> {{$hotel->capacidad}} personas</p>
+                    <p class="location">
+                        <span style="font-weight: bold;">Destino:</span> 
+                        {{ $hotel->destino ? $hotel->destino->nombre : 'Sin destino asignado' }}
+                    </p>
+
                     <div class="d-flex">
                         <button class="btn btn-danger" onclick="confirmDelete('{{ route('hotels.destroy', $hotel->id) }}')">Borrar</button>
                         <a href="{{ route('hotels.edit', $hotel) }}">

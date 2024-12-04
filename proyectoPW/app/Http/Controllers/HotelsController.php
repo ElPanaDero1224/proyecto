@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\HotelRequest;
 use App\Models\fotografias;
 use App\Models\habitacionesController;
+use App\Models\destinos;
 
 
 class HotelsController extends Controller
@@ -16,10 +17,11 @@ class HotelsController extends Controller
      */
     public function index()
     {
-        $consulta = Hotels::with('fotografias')->get();
+
+    $consulta = Hotels::with('fotografias', 'destino')->get();
+    return view('busquedaHotelesAdmi', compact('consulta'));
 
 
-        return view('busquedaHotelesAdmi',compact('consulta'));
     }
 
     /**
@@ -27,8 +29,8 @@ class HotelsController extends Controller
      */
     public function create()
     {
-        //
-        return view('agregarinfoHotel');
+    $destinos = destinos::all(); // Obtiene todos los registros de destinos
+    return view('agregarinfoHotel', compact('destinos')); // Pasa los destinos a la vista
     }
 
     /**
@@ -49,6 +51,7 @@ class HotelsController extends Controller
     $addHotel->politicas_cancelacion = $request->input('politicas_cancelacion');
     $addHotel->capacidad = $request->input('capacidad');
     $addHotel->precio_por_noche = $request->input('precio_por_noche');
+    $addHotel->destino_id = $request->input('destino_id');
 
     $addHotel->save();
 
@@ -84,11 +87,13 @@ class HotelsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(hotels $hotel)
+    public function edit(Hotels $hotel)
     {
-        //
+        // Obtén todos los destinos disponibles
+        $destinos = Destinos::all(); 
 
-        return view('editarinfoHotel',compact('hotel'));
+        // Retorna la vista de edición con el hotel y los destinos disponibles
+        return view('editarinfoHotel', compact('hotel', 'destinos'));
     }
 
     /**
@@ -108,6 +113,7 @@ class HotelsController extends Controller
         $upHotels->politicas_cancelacion = $request->input('politicas_cancelacion');
         $upHotels->capacidad = $request->input('capacidad');
         $upHotels->precio_por_noche = $request->input('precio_por_noche');
+        $upHotels->destino_id = $request->input('destino_id');
 
         $upHotels->update();
 

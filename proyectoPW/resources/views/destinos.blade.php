@@ -76,7 +76,9 @@
         });
     }
 </script>
-
+<a href="{{ route('hotels.index') }}" class="btn btn-secondary mb-4">
+        <i class="fas fa-arrow-left"></i> Regresar a la lista de hoteles
+    </a>
 <div class="container mt-4">
     <!-- Botón Agregar Destino -->
     <div class="d-flex justify-content-end mb-3">

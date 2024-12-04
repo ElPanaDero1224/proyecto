@@ -4,24 +4,41 @@
 @section('seccion')
 
 <div class="container mt-4">
-    <!-- Formulario de búsqueda -->
+<!-- Formulario de búsqueda -->
+<div class="container mt-4">
     <div class="row mt-4">
         <div class="col-md-12">
-            <form class="d-flex flex-wrap justify-content-between align-items-center">
-                <input type="text" class="form-control me-2 mb-2" placeholder="Destino" name="destino" value="{{ request('destino') }}">
+            <form class="search-form d-flex flex-wrap justify-content-between align-items-center p-3 rounded">
+                <!-- Filtro de destino -->
+                <select class="form-control me-2 mb-2" name="destino" value="{{ request('destino') }}">
+                    <option value="">Seleccione un destino</option>
+                    @foreach($destinos as $destino)
+                        <option value="{{ $destino->id }}" {{ request('destino') == $destino->id ? 'selected' : '' }}>
+                            {{ $destino->nombre }}
+                        </option>
+                    @endforeach
+                </select>
+                
+                <!-- Otros campos de búsqueda -->
+                 <!--
                 <input type="date" class="form-control me-2 mb-2" placeholder="Check in" name="check_in" value="{{ request('check_in') }}">
                 <input type="date" class="form-control me-2 mb-2" placeholder="Check out" name="check_out" value="{{ request('check_out') }}">
+                -->
+                
+                <!-- Filtro por número de habitaciones -->
                 <input type="number" class="form-control me-2 mb-2" placeholder="Número de habitaciones" name="habitaciones" value="{{ request('habitaciones') }}">
-                <input type="number" class="form-control me-2 mb-2" placeholder="Número de huéspedes" name="huespedes" value="{{ request('huespedes') }}">
+                <!--
+                <input type="number" class="form-control me-2 mb-2" placeholder="Número de huéspedes" name="huespedes" value="{{ request('huespedes') }}">-->
                 <button type="submit" class="btn btn-primary mb-2">Buscar</button>
             </form>
         </div>
     </div>
 
+
     <!-- Filtros en una sola línea -->
     <div class="row mt-4">
         <div class="col-md-12">
-            <form class="d-flex justify-content-between align-items-center flex-wrap">
+            <form class="filter-form d-flex justify-content-between align-items-center flex-wrap p-3 rounded">
                 <select class="form-control me-2 mb-2" name="categoria">
                     <option value="">Categoría</option>
                     @for ($i = 1; $i <= 5; $i++)
@@ -57,10 +74,12 @@
                                         @endif
                                     @endfor
                                 </p>
-                                <p class="fw-bold mb-1">Ubicacion: <span>{{ $hotel->ubicacion }}</span></p>
+                                <p class="fw-bold mb-1">Ubicación: <span>{{ $hotel->ubicacion }}</span></p>
                                 <p class="text-muted mt-2">{{ $hotel->descripcion }}</p>
                                 <p class="fw-bold mb-1">Desde: <span class="text-success">${{ $hotel->precio_por_noche }}</span></p>
-                                <!--<p>Distancia al centro: <span class="text-muted">{{ $hotel->distancia_centro }} km</span></p>-->
+                                <p class="fw-bold mb-1">Número de Habitaciones: <span>{{ $hotel->capacidad }}</span></p>
+                                <p class="fw-bold mb-1">Destino: <span>{{ $hotel->destino ? $hotel->destino->nombre : 'Sin destino asignado' }}</span></p>
+
                                 <p>Estado: <span class="badge bg-success">Disponible</span></p>
                             </div>
                         </div>
@@ -73,6 +92,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Estilos adicionales -->
 <style>
@@ -106,6 +126,15 @@
     form select,
     form input {
         max-width: 200px; /* Ajustar tamaño */
+    }
+
+    /* Fondo diferenciado para formularios */
+    .search-form {
+        background-color: #f8f9fa; /* Color claro */
+    }
+
+    .filter-form {
+        background-color: #62b5a7; /* Color ligeramente más oscuro */
     }
 </style>
 @endsection

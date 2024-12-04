@@ -12,12 +12,12 @@ class hotels extends Model
     return $this->hasMany(fotografias::class, 'hotel_id');
 }
 
- // Relación con comentarios
+
  public function comentarios()
 {
     return $this->hasMany(comentarios::class, 'hotel_id');
 }
-// App\Models\Hotels.php
+
 public function getRatingPromedioAttribute()
 {
     if ($this->comentarios->isEmpty()) {
@@ -25,6 +25,11 @@ public function getRatingPromedioAttribute()
     }
 
     return round($this->comentarios->avg('puntuacion'), 1); // Redondear a 1 decimal
+}
+
+public function destino()
+{
+    return $this->belongsTo(Destinos::class, 'destino_id');
 }
 
 

@@ -11,6 +11,9 @@
 
 
     <div class="container mt-5">
+    <a href="{{ route('hoteles') }}" class="btn btn-secondary mb-4">
+        <i class="fas fa-arrow-left"></i> Regresar a la lista de hoteles
+    </a>
         <div class="hotel-container d-flex align-items-stretch">
             <!-- Sección de imágenes -->
             <div class="image-container col-12 col-md-4 p-0">
@@ -51,7 +54,7 @@
                 <p><strong>Ubicación:</strong> {{ $hotel->ubicacion }}</p>
                 <p><strong>Precio por noche:</strong> ${{ $hotel->precio_por_noche }}</p>
                 <p><strong>Servicios:</strong> {{ $hotel->servicios }}</p>
-                <p><strong>Capacidad:</strong> {{ $hotel->capacidad }}</p>
+                <p><strong>Capacidad:</strong> {{ $hotel->capacidad }} personas</p>
                 <p><strong>Distancia al Centro:</strong> {{ $hotel->distancia_centro." km"}}</p>
                 <p><strong>Distancia puntos turisticos:</strong> {{ $hotel->distancia_puntos_turisticos}}</p>
                 <!-- Botón Reservar -->
@@ -220,6 +223,18 @@ document.querySelectorAll('[id^=delete-btn-]').forEach(button => {
         });
     </script>
 @endif
+
+<!--Mensajes de borrar mensaje -->
+@if(session('ReservarCompra'))
+    <script>
+        Swal.fire({
+            title: "Reservado",
+            text: "{{ session('ReservarCompra') }}",
+            icon: "success"
+        });
+    </script>
+@endif
+
 <!-- Mensaje de comentario agregado correctamente  -->
 @if(session('comentarioagregado'))
     <script>

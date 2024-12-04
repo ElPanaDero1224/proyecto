@@ -23,6 +23,8 @@ return new class extends Migration
             $table->longText('politicas_cancelacion');
             $table->integer('capacidad');
             $table->integer('precio_por_noche');
+            $table->unsignedBigInteger('destino_id');
+            $table->foreign('destino_id')->references('id')->on('destinos')->onDelete('cascade');
             $table->timestamps();
         });
     }

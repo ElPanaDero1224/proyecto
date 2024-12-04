@@ -93,21 +93,34 @@
                                 <small>{{ $errors->first("politicas_cancelacion") }}</small>
                             </div>
                             <div class="form-group">
-                                <label for="titulo"><strong>Capacidad:</strong></label>
+                                <label for="titulo"><strong>Capacidad(Número de Habitaciones):</strong></label>
                                 <input type="text" class="form-control" name="capacidad" value="{{old('capacidad',$hotel->capacidad)}}">
                                 <small>{{$errors->first("capacidad")}}</small>
                             </div>
                             <div class="form-group">
-                                <label for="titulo"><strong>precio por noche:</strong></label>
+                                <label for="titulo"><strong>Precio por noche(Sólo número):</strong></label>
                                 <input type="text" class="form-control" name="precio_por_noche" value="{{old('precio_por_noche',$hotel->precio_por_noche)}}">
                                 <small>{{$errors->first("precio_por_noche")}}</small>
                             </div>
+
+                            <div class="form-group">
+                            <label for="destino_id">Destino</label>
+                            <select name="destino_id" id="destino_id" class="form-control">
+                                <option value="">Seleccione un destino</option>
+                                @foreach($destinos as $destino)
+                                    <option value="{{ $destino->id }}" 
+                                        {{ $hotel->destino_id == $destino->id ? 'selected' : '' }}>
+                                        {{ $destino->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
 
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('hotels.index') }}">
                                     <button type="button" class="btn btn-danger">Cancelar</button>
                                 </a>
-                                <button type="submit" class="btn btn-secondary">editar hotel</button>
+                                <button type="submit" class="btn btn-secondary">Editar hotel</button>
                             </div>
                         </form>
 

@@ -80,7 +80,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="titulo"><strong>Distancia al centro(km):</strong></label>
-                                <input type="text" class="form-control" name="distancia_centro" value="{{old('distancia_centro')}}">
+                                <input type="number" class="form-control" name="distancia_centro" value="{{old('distancia_centro')}}">
                                 <small>{{$errors->first("distancia_centro")}}</small>
                             </div>
                             <div class="form-group">
@@ -89,17 +89,28 @@
                                 <small>{{$errors->first("politicas_cancelacion")}}</small>
                             </div>
                             <div class="form-group">
-                                <label for="titulo"><strong>Capacidad:</strong></label>
-                                <input type="text" class="form-control" name="capacidad" value="{{old('capacidad')}}">
+                                <label for="titulo"><strong>Capacidad(Número de Habitaciones):</strong></label>
+                                <input type="number" class="form-control" name="capacidad" value="{{old('capacidad')}}">
                                 <small>{{$errors->first("capacidad")}}</small>
                             </div>
                             <div class="form-group">
-                                <label for="titulo"><strong>precio por noche:</strong></label>
-                                <input type="text" class="form-control" name="precio_por_noche" value="{{old('precio_por_noche')}}">
+                                <label for="titulo"><strong>Precio por noche(Solo número):</strong></label>
+                                <input type="number" class="form-control" name="precio_por_noche" value="{{old('precio_por_noche')}}">
                                 <small>{{$errors->first("precio_por_noche")}}</small>
                             </div>
 
-                            
+                            <div class="form-group">
+                            <label for="destino_id"><strong>Destino:</strong></label>
+                            <select class="form-control" name="destino_id" id="destino_id">
+                                <option value="" disabled selected>Seleccione un destino</option>
+                                @foreach ($destinos as $destino)
+                                    <option value="{{ $destino->id }}" {{ old('destino_id') == $destino->id ? 'selected' : '' }}>
+                                        {{ $destino->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <small>{{ $errors->first("destino_id") }}</small>
+                        </div>
                             <!--<div class="form-group">
                                 <label for="precio"><strong>Precio:</strong></label>
                                 <input type="text" class="form-control" name="precio" value="{{old('precio')}}">
@@ -116,7 +127,7 @@
                             <a href="{{route('hotels.index')}}">
                                 <button type="button" class="btn btn-danger">Cancelar</button>
                             </a>
-                                <button type="submit" class="btn btn-secondary">guardar hotel</button>
+                                <button type="submit" class="btn btn-secondary">Guardar hotel</button>
                             </div>
                         </form>
                     </div>

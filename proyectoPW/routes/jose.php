@@ -36,7 +36,7 @@ Route::post('/realizarbusquedahotelesadmi',[ControladorbusquedaHotelesAdmi::clas
 
 
 //Rutas de Usuarios no Admin
-Route::get('/hoteles', [ControladorbusquedaHoteles::class, 'busquedahoteles']);
+Route::get('/hoteles', [ControladorbusquedaHoteles::class, 'busquedahoteles'])->name('hoteles');
 Route::get('/hotelesDetalles/{id}', [ControladordetallesHoteles::class, 'detallesHoteles'])->name('detallesHoteles');
 Route::get('/politicas/{id}', [ControladordetallesHoteles::class, 'politicasCancelacion'])->name('politicas.hotel');
 

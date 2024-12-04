@@ -37,6 +37,6 @@ class ReservaHotelController extends Controller
         $reservaDetalle->save();
 
         // Redireccionar con mensaje de éxito
-        return redirect()->back()->with('success', 'Reservación realizada exitosamente.');
+        return redirect()->back()->with('ReservarCompra', 'Reservación realizada exitosamente.');
     }
 }

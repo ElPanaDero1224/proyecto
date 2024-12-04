@@ -16,13 +16,14 @@
         <!-- Opciones de navegación -->
         <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-                <a href="/vuelosAmi" class="nav-link d-flex flex-column align-items-center {{ Request::is('vuelosAdmi*') ? 'active' : '' }}">
+                <a href="{{route('vuelos.index')}}
+                class="nav-link d-flex flex-column align-items-center {{ Request::is('vuelos*') ? 'active' : '' }}">
                     <i class="fas fa-plane"></i>
                     <span>Vuelos</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/hotelesAdmi" class="nav-link d-flex flex-column align-items-center {{ Request::is('hotelesAdmi*') ? 'active' : '' }}">
+                <a href="/hotels" class="nav-link d-flex flex-column align-items-center {{ Request::is('hotel*') ? 'active' : '' }}">
                     <i class="fas fa-hotel"></i>
                     <span>Hoteles</span>
                 </a>
@@ -45,6 +46,14 @@
                     <i class="fas fa-cogs"></i>
                     <span>Panel principal</span>
                 </a>
+            </li>
+            <li class="nav-item">
+                <form method="POST" action="{{ route('rutacerrarsesion') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-link nav-link" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                    </button>
+                </form>
             </li>
         </ul>
     </div>

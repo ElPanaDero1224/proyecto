@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\comentarios;
-;
+use Illuminate\Support\Facades\Auth; // Importar el facade Auth
+
 class ComentariosController extends Controller
 {
     /**
@@ -28,16 +29,22 @@ class ComentariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos recibidos
+        $request->validate([
+            'hotel_id' => 'required|integer|exists:hoteles,id',
+            'puntuacion' => 'required|integer|min:1|max:5',
+            'comentario' => 'required|string|max:255',
+        ]);
+
+        // Crear el comentario con el usuario autenticado
         comentarios::create([
             'fecha' => now(),
             'hotel_id' => $request->hotel_id, // ID del hotel relacionado
-            'usuario_id' =>1, // ID del usuario autenticado
+            'usuario_id' => Auth::id(), // ID del usuario autenticado
             'puntuacion' => $request->puntuacion,
             'comentario' => $request->comentario,
-            
         ]);
-        
+
         // Redirigir con un mensaje de éxito
         return redirect()->back()->with('comentarioagregado', 'Comentario añadido exitosamente.');
     }
@@ -74,8 +81,8 @@ class ComentariosController extends Controller
         // Buscar el comentario
         $comentario = comentarios::findOrFail($id);
 
-        // Verificar que el usuario sea el propietario
-        if ($comentario->usuario_id !== 1) {
+        // Verificar que el usuario autenticado sea el propietario
+        if ($comentario->usuario_id !== Auth::id()) {
             return redirect()->back()->with('error', 'No tienes permiso para eliminar este comentario.');
         }
 
@@ -83,6 +90,5 @@ class ComentariosController extends Controller
         $comentario->delete();
 
         return redirect()->back()->with('eliminarcomentario', 'Comentario eliminado correctamente.');
-
     }
 }

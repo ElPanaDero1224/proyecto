@@ -129,7 +129,7 @@
                     <p>{{ $comentario->comentario }}</p>
 
                     <!-- Botones de acciones -->
-                    @if ($comentario->usuario_id === 1)
+                    @if ($comentario->usuario_id === auth()->id()) 
                     <div class="d-flex justify-content-start mt-2">
                     <form action="{{ route('comentarios.destroy', $comentario->id) }}" method="POST" class="d-inline" id="delete-form-{{ $comentario->id }}">
                         @csrf

@@ -88,22 +88,39 @@ body {
     font-size: 14px;
 }
 
-/* Botones */
-.btn-danger {
-    background-color: #E74C3C;
-    border: none;
-    color: #FFFFFF;
-    border-radius: 8px;
-    padding: 8px 12px;
+/* Botones uniformes */
+.d-flex button, .d-flex a {
+    min-width: 120px; /* Ancho mínimo uniforme */
+    height: 40px; /* Altura fija */
+    font-size: 14px; /* Tamaño de fuente consistente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px; /* Bordes redondeados */
+    margin-right: 8px; /* Espaciado entre botones */
+    text-decoration: none; /* Sin subrayado para los enlaces */
+    color: white; /* Color del texto */
 }
 
-.btn-secondary {
+/* Colores específicos para cada botón */
+.d-flex .btn-danger {
+    background-color: #E74C3C;
+    border: none;
+}
+
+.d-flex .btn-secondary {
     background-color: #3498DB;
     border: none;
-    color: #FFFFFF;
-    border-radius: 8px;
-    padding: 8px 12px;
-    margin-left: 8px;
+}
+
+.d-flex .btn-primary {
+    background-color: #27AE60;
+    border: none;
+}
+
+/* Último botón sin margen derecho */
+.d-flex a:last-child {
+    margin-right: 0;
 }
 
 /* Responsive */

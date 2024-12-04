@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('tipo_asiento',255);
             $table->integer('disponibilidad_total');
-            $table->integer('uso_adultos');
-            $table->integer('uso_niños');
-            $table->integer('uso_ancianos');
-            $table->unsignedBigInteger('vuelo_id');
+            $table->integer('disponibilidadReferencia');
+            $table->unsignedBigInteger('vuelo_id')->nullable();
             $table->foreign('vuelo_id')->references('id')->on('vuelos');
             $table->timestamps();
         });

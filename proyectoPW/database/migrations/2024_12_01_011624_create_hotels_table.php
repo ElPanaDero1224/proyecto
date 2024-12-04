@@ -21,10 +21,19 @@ return new class extends Migration
             $table->longtext('distancia_puntos_turisticos');
             $table->integer('distancia_centro');
             $table->longText('politicas_cancelacion');
+            $table->integer('capacidad');
+            $table->integer('precio_por_noche');
             $table->timestamps();
         });
     }
+    public function getRatingPromedioAttribute()
+    {
+        if ($this->comentarios->isEmpty()) {
+            return 0; // Si no hay comentarios, el promedio es 0
+        }
 
+        return round($this->comentarios->avg('puntuacion'), 1); // Redondear a 1 decimal
+    }
     /**
      * Reverse the migrations.
      */

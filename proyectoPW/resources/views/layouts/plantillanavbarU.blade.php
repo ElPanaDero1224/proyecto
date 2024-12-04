@@ -17,7 +17,7 @@
         <ul class="navbar-nav mx-auto">
             <li class="nav-item">
                 <!-- Vuelos: activo para /vuelos y cualquier subruta de /vuelos -->
-                <a href="/vuelos" class="nav-link d-flex flex-column align-items-center {{ Request::is('vuelos*') ? 'active' : '' }}">
+                <a href="/vuelosDestino" class="nav-link d-flex flex-column align-items-center {{ Request::is('vuelos*') ? 'active' : '' }}">
                     <i class="fas fa-plane"></i>
                     <span>Vuelos</span>
                 </a>
@@ -43,6 +43,15 @@
                     <span>Carrito</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <form method="POST" action="{{ route('rutacerrarsesion') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-link nav-link" style="color: inherit; text-decoration: none;">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                    </button>
+                </form>
+            </li>
+            
         </ul>
         
     </div>

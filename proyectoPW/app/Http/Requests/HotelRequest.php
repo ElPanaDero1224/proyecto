@@ -13,11 +13,16 @@ class HotelRequest extends FormRequest
     public function rules()
     {
         return [
-            'titulo' => 'required|string|max:255',
-            'descripcion' => 'required|string',
+            'nombre' => 'required|string|max:255',
             'ubicacion' => 'required|string|max:255',
-            'precio' => 'required|numeric|min:0',
-            'imagen' => 'nullable|image|max:2048', // Si el campo es opcional y permite imágenes hasta 2 MB
+            'categoria' => 'required|integer|min:1|max:5',
+            'descripcion' => 'required|string',
+            'servicios' => 'required|string',
+            'distancia_puntos_turisticos' => 'required|string',
+            'distancia_centro' => 'required|integer|min:0',
+            'capacidad' => 'required|integer|min:0',
+            'precio_por_noche' => 'required|integer|min:0',
+            'politicas_cancelacion' => 'required|string',
         ];
     }
 }

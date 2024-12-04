@@ -19,23 +19,25 @@
 <div class="form-section mt-4">
         <h2 class="form-title text-center">RESTABLECER CONTRASEÑA</h2>
 
-        <form method="POST" action="formrestablecerContraseña" class="mt-4">
+        <form method="POST" action="{{ route('password.update') }}">
             @csrf
-            
+            <input type="hidden" name="token" value="{{ $token }}">
+            <input type="hidden" name="email" value="{{ $email }}">
+        
             <div class="form-group mb-3">
                 <label for="Npassw" class="form-label">Nueva Contraseña</label>
-                <input type="password" id="Npassw" name="Npassw" class="form-control">
-                <small class="text-danger fst-italic">{{ $errors->first('Npassw') }}</small>
+                <input type="password" id="password" name="password" class="form-control">
+                <small class="text-danger fst-italic">{{ $errors->first('password') }}</small>
             </div>
-
+        
             
             <div class="form-group mb-3">
                 <label for="Cpassw" class="form-label">Confirmar Contraseña</label>
-                <input type="password" id="Cpassw" name="Cpassw" class="form-control">
-                <small class="text-danger fst-italic">{{ $errors->first('Cpassw') }}</small>
+                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
+                <small class="text-danger fst-italic">{{ $errors->first('password_confirmation') }}</small>
             </div>
-
+        
             <button type="submit" class="btn btn-primary btn-block mt-4 w-100">Restablecer</button>
-        </form>
+        </form>        
     </div>
 @endsection

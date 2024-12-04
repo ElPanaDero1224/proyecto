@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('vuelos_en_reservas_vuelos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reserva_vuelo_id');
-            $table->foreign('reserva_vuelo_id')->references('id')->on('reserva_vuelos');
+            /* $table->unsignedBigInteger('reserva_vuelo_id');
+            $table->foreign('reserva_vuelo_id')->references('id')->on('reserva_vuelos')->nullable(); */
             $table->unsignedBigInteger('vuelo_id');
             $table->foreign('vuelo_id')->references('id')->on('vuelos');
+            $table->unsignedBigInteger('cantidadBoletos');
             $table->timestamps();
         });
     }

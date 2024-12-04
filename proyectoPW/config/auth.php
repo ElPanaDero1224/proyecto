@@ -2,6 +2,7 @@
 
 return [
 
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -14,9 +15,10 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
+    'guard' => 'web', // Guarda predeterminada
+    'passwords' => 'usuarios', // Broker de contraseñas predeterminad
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -60,16 +62,17 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+        'usuarios' => [
+            'driver' => 'eloquent', // Usamos el ORM Eloquent
+            'model' => App\Models\usuarios::class, // El modelo que representa a los usuarios
         ],
+    ],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-    ],
+    //],
 
     /*
     |--------------------------------------------------------------------------
@@ -91,13 +94,14 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
-            'expire' => 60,
-            'throttle' => 60,
-        ],
+    'usuarios' => [ // Este es el nombre de tu broker
+        'provider' => 'usuarios', // El proveedor definido abajo
+        'table' => 'password_resets', // Tabla usada para tokens de recuperación
+        'expire' => 60, // Los tokens expiran en 60 minutos
+        'throttle' => 60, // Tiempo mínimo entre solicitudes de correo (en minutos)
     ],
+],
+
 
     /*
     |--------------------------------------------------------------------------

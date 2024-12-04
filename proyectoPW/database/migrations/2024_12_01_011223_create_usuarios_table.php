@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',255);
-            $table->string('apellido',255);
-            $table->string('telefono',12);
-            $table->string('email',255);
-            $table->string('contraseña',255);
+            $table->string('nombre', 255);
+            $table->string('apellido', 255);
+            $table->string('telefono', 12);
+            $table->string('email', 255)->unique();
+            $table->string('password', 255); // Cambiado a 'password' (requerido por Laravel)
             $table->unsignedBigInteger('rol_id');
+            $table->string('two_factor_code', 6)->nullable(); // Código para doble autenticación
+            $table->timestamp('two_factor_expires_at')->nullable(); // Tiempo de expiración del código
             $table->timestamps();
+
+            // Llave foránea
             $table->foreign('rol_id')->references('id')->on('roles');
         });
     }
@@ -32,3 +36,4 @@ return new class extends Migration
         Schema::dropIfExists('usuarios');
     }
 };
+

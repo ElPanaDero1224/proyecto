@@ -48,7 +48,7 @@ class UsuariosController extends Controller
             return redirect()->route('vuelos.index')->with('exito', 'Se ha enviado un código de verificación a tu correo.');
         } else {
             // Redirigir al cliente
-            return redirect()->route('rutavuelosDestino')->with('exito', 'Se ha enviado un código de verificación a tu correo.');
+            return redirect()->route('ruta2fa')->with('exito', 'Se ha enviado un código de verificación a tu correo.');
         }
     }
     

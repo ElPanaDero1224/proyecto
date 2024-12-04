@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\disponibilidad_asientos;
+use App\Models\vuelos;
 use Illuminate\Http\Request;
 
 class DisponibilidadAsientosController extends Controller
@@ -12,7 +13,17 @@ class DisponibilidadAsientosController extends Controller
      */
     public function index()
     {
-        //
+        $asientos = disponibilidad_asientos::join('vuelos', 'disponibilidad_asientos.vuelo_id', '=', 'vuelos.id')
+        ->select(
+            'disponibilidad_asientos.id as asiento_id', 
+            'disponibilidad_asientos.tipo_asiento', 
+            'disponibilidad_asientos.disponibilidad_total', 
+            'disponibilidad_asientos.disponibilidadReferencia', 
+            'vuelos.id as vuelo_id', 
+            'vuelos.numero_vuelo'
+        )
+        ->get();
+        return view('disponibilidadAsientosAdmin', compact('asientos'));
     }
 
     /**
@@ -20,7 +31,8 @@ class DisponibilidadAsientosController extends Controller
      */
     public function create()
     {
-        //
+        $vuelos = vuelos::all();
+        return view('registroNewDisponibilidadAsientosAdmin', compact('vuelos'));
     }
 
     /**
@@ -28,7 +40,33 @@ class DisponibilidadAsientosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'asiento' => 'required|string|max:255',
+            'disponibilidad' => 'required|integer|min:0',
+            'vuelo' => 'required|exists:vuelos,id', // Verifica que el vuelo existe en la tabla 'vuelos'
+        ], [
+            // Mensajes personalizados
+            'asiento.required' => 'El tipo de asiento es obligatorio.',
+            'asiento.string' => 'El tipo de asiento debe ser un texto válido.',
+            'asiento.max' => 'El tipo de asiento no puede exceder los 255 caracteres.',
+            'disponibilidad.required' => 'La disponibilidad total es obligatoria.',
+            'disponibilidad.integer' => 'La disponibilidad debe ser un número entero.',
+            'disponibilidad.min' => 'La disponibilidad no puede ser negativa.',
+            'vuelo.required' => 'El vuelo asociado es obligatorio.',
+            'vuelo.exists' => 'El vuelo seleccionado no existe en el sistema.',
+        ]);
+        
+
+        $disponibilidad = new disponibilidad_asientos();
+
+        $disponibilidad->tipo_asiento = $request->input('asiento');
+        $disponibilidad->disponibilidad_total = $request->input('disponibilidad');
+        $disponibilidad->disponibilidadReferencia = $request->input('disponibilidad');
+        $disponibilidad->vuelo_id = $request->input('vuelo'); // Relación con el vuelo
+        $disponibilidad->save();
+    
+        return to_route('disponibilidad_asientos.index')->with('success', 'La disponibilidad de asientos se ha agregado');
+        
     }
 
     /**
@@ -42,24 +80,49 @@ class DisponibilidadAsientosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(disponibilidad_asientos $disponibilidad_asientos)
+    public function edit(disponibilidad_asientos $request, $id)
     {
-        //
+        $vuelos = vuelos::all();
+        $disponibilidad = disponibilidad_asientos::find($id);
+        return view('modificarDisponibilidadAsientosAdmin', compact('vuelos', 'disponibilidad'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, disponibilidad_asientos $disponibilidad_asientos)
+    public function update(Request $request, $id)
     {
-        //
+
+        $disponibilidad_asientos = disponibilidad_asientos::find($id);
+        $disponibilidad_asientos->tipo_asiento = $request->input('asiento');
+        $disponibilidad_asientos->disponibilidad_total = $request->input('disponibilidad');
+        $disponibilidad_asientos->disponibilidadReferencia = $request->input('disponibilidad');
+        $disponibilidad_asientos->vuelo_id = $request->input('vuelo'); 
+        $disponibilidad_asientos->update();
+
+
+        return to_route('disponibilidad_asientos.index')->with('success', 'La disponibilidad de asientos se ha actualizado');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(disponibilidad_asientos $disponibilidad_asientos)
+    public function destroy(disponibilidad_asientos $request, $id)
     {
-        //
+        $disponibilidad_asientos = disponibilidad_asientos::find($id);
+
+        if ($disponibilidad_asientos) {
+            $nombre = $disponibilidad_asientos->tipo_asiento; 
+            $disponibilidad_asientos->delete(); 
+
+            session()->flash('success', 'Los asientos de tipo ' . $nombre . ' se han eliminado.');
+        } else {
+ 
+            session()->flash('error', 'Los asientos con ID ' . $id . ' no existen.');
+        }
+
+        return to_route('disponibilidad_asientos.index');
+
     }
 }

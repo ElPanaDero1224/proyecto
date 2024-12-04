@@ -17,7 +17,7 @@
         <!-- Opciones de navegación -->
         <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-                <a href="/vuelosAdmi" class="nav-link d-flex flex-column align-items-center {{ Request::is('vuelosAdmi*') ? 'active' : '' }}">
+                <a href="{{route('vuelos.index')}}" class="nav-link d-flex flex-column align-items-center {{ Request::is('vuelos') ? 'active' : '' }}">
                     <i class="fas fa-plane"></i> 
                     <span>Vuelos</span>
                 </a>

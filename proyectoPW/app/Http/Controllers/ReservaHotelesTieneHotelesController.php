@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\reservas_hoteles_habitaciones;
+use App\Models\reserva_hoteles_tiene_hoteles;
 use Illuminate\Http\Request;
 
-class ReservasHotelesHabitacionesController extends Controller
+class ReservaHotelesTieneHotelesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class ReservasHotelesHabitacionesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(reservas_hoteles_habitaciones $reservas_hoteles_habitaciones)
+    public function show(reserva_hoteles_tiene_hoteles $reserva_hoteles_tiene_hoteles)
     {
         //
     }
@@ -42,7 +42,7 @@ class ReservasHotelesHabitacionesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(reservas_hoteles_habitaciones $reservas_hoteles_habitaciones)
+    public function edit(reserva_hoteles_tiene_hoteles $reserva_hoteles_tiene_hoteles)
     {
         //
     }
@@ -50,7 +50,7 @@ class ReservasHotelesHabitacionesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, reservas_hoteles_habitaciones $reservas_hoteles_habitaciones)
+    public function update(Request $request, reserva_hoteles_tiene_hoteles $reserva_hoteles_tiene_hoteles)
     {
         //
     }
@@ -58,7 +58,7 @@ class ReservasHotelesHabitacionesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(reservas_hoteles_habitaciones $reservas_hoteles_habitaciones)
+    public function destroy(reserva_hoteles_tiene_hoteles $reserva_hoteles_tiene_hoteles)
     {
         //
     }

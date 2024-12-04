@@ -1,11 +1,21 @@
 .hotel-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Las secciones estarán en un solo renglón */
     border: 1px solid #90caf9;
     border-radius: 8px;
     overflow: hidden;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%; /* Para asegurar alturas consistentes */
+}
+.review-container {
+    max-height: 300px; /* Altura máxima para scroll */
+    min-height: 150px; /* Altura mínima para simular espacio */
+    overflow-y: auto; /* Habilitar scroll solo cuando sea necesario */
+    border: 1px solid #ccc; /* Opcional: Agregar borde para mejor visualización */
+    padding: 10px; /* Espaciado interno */
+    background-color: #f9f9f9; /* Color de fondo claro para mejor contraste */
+    border-radius: 5px; /* Bordes redondeados */
 }
 
 .image-container {
@@ -14,16 +24,26 @@
     overflow: hidden;
 }
 
-.carousel-inner img {
-    width: 100%;
+.carousel-inner {
     height: 100%;
-    object-fit: cover;
+}
+
+.carousel-item {
+    height: 100%; /* Ajusta la altura del carrusel a la de su contenedor */
+}
+
+.carousel-item img {
+    object-fit: cover; /* Ajusta la imagen sin distorsionarla */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    height: 100%; /* Asegura que ocupe toda la altura del contenedor */
 }
 
 .hotel-info, .reseñas {
+    flex: 1; /* Cada sección ocupa un tercio del ancho */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 15px;
 }
 
 .hotel-info {
@@ -35,7 +55,6 @@
     background-color: #e3f2fd;
     border-left: 1px solid #90caf9;
     overflow-y: auto;
-    max-height: 530px;
 }
 
 .review {
@@ -45,70 +64,22 @@
     margin-bottom: 10px;
     border: 1px solid #cfe2ff;
 }
-
-.text-success {
-    color: #2e7d32 !important;
-}
-
-.btn-success {
-    background-color: #a5d6a7;
-    border-color: #a5d6a7;
-    color: #004d40;
-    width: 100%;
-}
-
-.btn-secondary {
-    background-color: #b0bec5;
-    border-color: #b0bec5;
-    color: #263238;
-    width: 100%;
-}
-
-h3, h4 {
-    color: #004d40;
-}
-
-p {
-    color: #616161;
-}
-
-.rating-stars i {
-    color: #FFD700;
-    margin-right: 4px;
-    font-size: 1.2em;
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.rating-stars i.far {
-    color: #ccc;
-}
-
-.rating-stars i:hover {
-    transform: scale(1.1);
-    color: #FFC107;
-}
-
-.review p {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.review strong {
-    font-weight: bold;
-    color: #555;
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: auto; /* Ajuste automático en pantallas pequeñas */
+    }
 }
 
 @media (max-width: 768px) {
     .hotel-container {
-        flex-direction: column;
+        flex-direction: column; /* Diseño en columnas para pantallas pequeñas */
     }
 
-    .hotel-info {
-        padding: 15px;
+    .carousel-inner img {
+        height: 250px; /* Reduce la altura en pantallas pequeñas */
     }
 
-    .carousel-item img {
-        height: 250px;
+    .hotel-info, .reseñas {
+        padding: 10px;
     }
 }

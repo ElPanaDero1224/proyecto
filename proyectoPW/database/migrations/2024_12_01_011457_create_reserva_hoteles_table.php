@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id();
             $table->dateTime('fecha_check_in');
             $table->dateTime('fecha_check_out');
-            $table->integer('adultos');
-            $table->integer('niños');
-            $table->integer('estatus');
             $table->integer('precio_total');
             $table->timestamps();
         });

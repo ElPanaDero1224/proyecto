@@ -9,6 +9,8 @@ class RolesSeeder extends Seeder
 {
     public function run()
     {
+        $this->call(DatabaseSeeder::class);
+
         DB::table('roles')->insert([
             [
                 'id' => 1,

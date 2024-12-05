@@ -11,19 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reportes_administradores', function (Blueprint $table) {
-            $table->id();
-            $table->dateTime('fecha_generacion');
-            $table->string('tipo_reporte',255);
-            $table->dateTime('filtro_fecha');
-            $table->string('filtro_destino');
-            $table->string('filtro_aerolinea');
-            $table->string('filtro_cliente');
-            $table->string('filtro_origen');
-            $table->string('url_documento');
-            $table->unsignedBigInteger('usuario_id');
-            $table->foreign('usuario_id')->references('id')->on('usuarios');
-            $table->timestamps();
+        Schema::create('vuelos', function (Blueprint $table) {
+            $table->id(); // ID único del vuelo
+            $table->string('numero_vuelo', 50); // Número del vuelo
+            $table->string('origen', 255); // Origen del vuelo
+            $table->string('destino', 255); // Destino del vuelo
+            $table->dateTime('fecha_salida'); // Fecha y hora de salida
+            $table->dateTime('fecha_llegada'); // Fecha y hora de llegada
+            $table->integer('duracion'); // Duración del vuelo en horas
+            $table->timestamps(); // Timestamps para created_at y updated_at
         });
     }
 
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reportes_administradores');
+        Schema::dropIfExists('vuelos');
     }
 };

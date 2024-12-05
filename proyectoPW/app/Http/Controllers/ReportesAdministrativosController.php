@@ -2,64 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\reportes_administrativos;
+use App\Models\vuelos;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReportesAdministrativosController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // Filtrar los vuelos según los parámetros recibidos
+        $query = vuelos::query();
+
+        if ($request->has('origen') && $request->origen != '') {
+            $query->where('origen', 'like', '%' . $request->origen . '%');
+        }
+
+        if ($request->has('destino') && $request->destino != '') {
+            $query->where('destino', 'like', '%' . $request->destino . '%');
+        }
+
+        if ($request->has('fecha') && $request->fecha != '') {
+            $query->whereDate('fecha_salida', '=', $request->fecha);
+        }
+
+        $vuelos = $query->get(); // Obtener los vuelos filtrados
+
+        return view('reservasAdmi', compact('vuelos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    // Método para generar el PDF
+    public function generarPdf()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(reportes_administrativos $reportes_administrativos)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(reportes_administrativos $reportes_administrativos)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, reportes_administrativos $reportes_administrativos)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(reportes_administrativos $reportes_administrativos)
-    {
-        //
+        $vuelos = vuelos::all();
+        $pdf = PDF::loadView('pdf.reporteVuelos', compact('vuelos'));
+        return $pdf->download('reporte_vuelos.pdf');
     }
 }

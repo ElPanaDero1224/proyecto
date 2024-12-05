@@ -28,7 +28,7 @@ Route::view('/vuelosDestino', 'vuelosDestino')->name('rutavuelosDestino');
 Route::view('/vuelosDetalles', 'detallesVuelo')->name('rutadetallesVuelo');
 Route::view('/hoteles', 'busquedaHoteles')->name('rutabusquedaHoteles');
 Route::view('/reservas', 'reservas')->name('rutareservas');
-Route::view('/carrito', 'carrito')->name('rutacarrito');
+//Route::view('/carrito', 'carrito')->name('rutacarrito');
 Route::view('/vuelosAdmi', 'busquedaVuelosAdmi')->name('rutabusquedaVuelosAdmi');
 Route::view('/vuelosAdmiAdministrar', 'administrarVuelos')->name('rutaadministrarVuelos');
 Route::view('/vuelosAdmiNew', 'registroNewVuelo')->name('rutaregistroNewVuelo');

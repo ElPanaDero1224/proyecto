@@ -16,10 +16,12 @@ return new class extends Migration
             $table->integer('precio_total_carrito');
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuarios');
-            $table->unsignedBigInteger('reserva_vuelo_id');
-            $table->foreign('reserva_vuelo_id')->references('id')->on('reserva_vuelos');
-            $table->unsignedBigInteger('reserva_hotel_id');
+            // $table->unsignedBigInteger('reserva_vuelo_id');
+            // $table->foreign('reserva_vuelo_id')->references('id')->on('reserva_vuelos');
+            $table->unsignedBigInteger('reserva_hotel_id')->nullable();
             $table->foreign('reserva_hotel_id')->references('id')->on('reserva_hoteles');
+            $table->unsignedBigInteger('vuelos_en_reservas_vuelos_id')->nullable();
+            $table->foreign('vuelos_en_reservas_vuelos_id')->references('id')->on('vuelos_en_reservas_vuelos');
             $table->timestamps();
         });
     }

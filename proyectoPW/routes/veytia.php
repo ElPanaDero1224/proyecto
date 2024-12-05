@@ -34,7 +34,10 @@ use App\Models\vuelos;
 // Nuevas rutas carrito
 Route::resource('carrito', CarritoReservacionController::class);
 
-Route::resource('reportes_administrativos', ReportesAdministrativosController::class);
+//Ruta para mostrar la vista de gestión de reservas
+Route::get('/reservas', [ReportesAdministrativosController::class, 'index'])->name('reservas.index');
 
-Route::get('/reportes-administrativos', [ReportesAdministrativosController::class, 'index'])->name('rutareportes');
+
+// Ruta para generar el PDF
+Route::get('/reservas/pdf', [ReportesAdministrativosController::class, 'generarPdf'])->name('reservas.pdf');
 

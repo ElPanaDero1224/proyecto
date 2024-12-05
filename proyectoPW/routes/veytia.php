@@ -34,4 +34,7 @@ use App\Models\vuelos;
 // Nuevas rutas carrito
 Route::resource('carrito', CarritoReservacionController::class);
 
+Route::resource('reportes_administrativos', ReportesAdministrativosController::class);
+
+Route::get('/reportes-administrativos', [ReportesAdministrativosController::class, 'index'])->name('rutareportes');
 

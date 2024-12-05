@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/reservasAdmi" class="nav-link d-flex flex-column align-items-center {{ Request::is('reservasAdmi*') ? 'active' : '' }}">
+                <a href="{{route('reportes_administrativos.index')}}" class="nav-link d-flex flex-column align-items-center {{ Request::is('reservasAdmi*') ? 'active' : '' }}">
                     <i class="fas fa-calendar-alt"></i> 
                     <span>Reservas</span>
                 </a>

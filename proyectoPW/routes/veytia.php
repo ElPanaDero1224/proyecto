@@ -6,11 +6,14 @@ use App\Http\Controllers\controladorreservasAdmi;
 use App\Http\Controllers\controladornotificacionesProgramados;
 use App\Http\Controllers\controladorrestablecerContraseña;
 use App\Http\Controllers\controladornotificacionesPlantillas;
+use App\Http\Controllers\ReportesAdministrativosController;
+use App\Models\vuelos;
 
 
 // Route::get('/prueba', function () {
 //     return view('welcome');
 // });
+
 
 // Route::get('/reservasAdmi',[controladorreservasAdmi::class, 'reservasAdmi'])->name('rutareservasAdmi');
 // Route::get('/restablecer',[controladorrestablecerContraseña::class, 'restablecerContraseña'])->name('rutarestablecerpass');
@@ -30,4 +33,5 @@ use App\Http\Controllers\controladornotificacionesPlantillas;
 
 // Nuevas rutas carrito
 Route::resource('carrito', CarritoReservacionController::class);
+
 
